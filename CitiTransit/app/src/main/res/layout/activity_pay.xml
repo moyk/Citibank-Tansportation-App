@@ -1,28 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="350dp"
     android:id="@+id/payLayout"
     tools:context="com.citi.cititransit.PayActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:id="@+id/textView" />
 
     <ListView
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="match_parent"
         android:id="@+id/ticketList"
         android:layout_weight="1"
     />
 
-</RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:id="@+id/subtotalText"
+            android:layout_height="wrap_content"
+            android:paddingLeft="8dp"
+            android:layout_marginLeft="8dp"
+            android:textSize="20dp"
+            android:text="Subtotal" />
+        <TextView
+            android:id="@+id/subtotal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="$15.0"
+            android:gravity="right"
+            android:paddingRight="8dp"
+            android:layout_marginRight="8dp"
+            android:textSize="20dp"/>
+    </LinearLayout>
+
+    <!-- Tax to pay if any -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tax (if any)"
+            android:layout_marginLeft="8dp"
+            android:paddingLeft="8dp"
+            android:textSize="15dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="$0.0"
+            android:gravity="right"
+            android:paddingRight="8dp"
+            android:layout_marginRight="8dp"
+            android:textSize="15dp"/>
+    </LinearLayout>
+
+    <!-- Total amount to pay -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="8dp"
+            android:paddingLeft="8dp"
+            android:layout_marginLeft="8dp"
+            android:textSize="22dp"
+            android:text="Total"
+            android:textStyle="bold"
+            android:textColor="#039BE5"/>
+        <TextView
+            android:id="@+id/total"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:text="$15.0"
+            android:textSize="22dp"
+            android:paddingTop="8dp"
+            android:paddingRight="8dp"
+            android:layout_marginRight="8dp"
+            android:textStyle="bold"
+            android:textColor="#039BE5"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>
