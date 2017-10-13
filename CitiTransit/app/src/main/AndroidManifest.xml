@@ -42,6 +42,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".PayActivity"
+            android:label="Pay"/>
     </application>
 
 </manifest>

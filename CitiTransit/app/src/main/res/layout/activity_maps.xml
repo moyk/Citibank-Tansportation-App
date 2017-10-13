@@ -41,7 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="To         "
-            android:id="@+id/tvDistance" />
+            android:id="@+id/tvDistance2" />
 
     <EditText
         android:id="@+id/etDestination"
@@ -59,6 +59,14 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Search" />
+
+    <Button
+        android:layout_alignParentRight="true"
+        android:id="@+id/payTest"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Test" />
+
     <fragment
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
