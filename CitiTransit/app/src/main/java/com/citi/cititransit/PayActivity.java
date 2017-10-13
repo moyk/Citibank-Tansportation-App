@@ -6,9 +6,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
 import android.util.Log;
 
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
-
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.mastercard.mp.checkout.Amount;
@@ -32,6 +32,9 @@ import java.util.Currency;
 import java.util.List;
 import java.util.Locale;
 
+import Adapters.TicketListRowAdapter;
+import Modules.Ticket;
+
 /**
  * Created by nick on 10/13/17.
  */
@@ -41,6 +44,18 @@ public class PayActivity extends AppCompatActivity implements MasterpassInitCall
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_pay);
+
+        //Create the ListView for the transportation tickets
+        List<Ticket> testList = new ArrayList<>();
+        testList.add(new Ticket("Subway", 2.75));
+        testList.add(new Ticket("CitiBike", 13.25));
+
+        TicketListRowAdapter ticketsAdapter = new TicketListRowAdapter(this, R.layout.ticketlist_row, testList);
+        ListView ticketsList = (ListView)findViewById(R.id.ticketList);
+        ticketsList.setAdapter(ticketsAdapter);
+
+
         String signature = "LOCAL_TESTING";  // will be provided by Masterpass, use "LOCAL_TESTING" to test integration
 
         MasterpassMerchantConfiguration sampleConfig = new MasterpassMerchantConfiguration.Builder()
@@ -57,6 +72,8 @@ public class PayActivity extends AppCompatActivity implements MasterpassInitCall
             // in case SDK already initialized
             this.onInitSuccess();
         }
+
+
     }
 
     @Override
@@ -93,13 +110,22 @@ public class PayActivity extends AppCompatActivity implements MasterpassInitCall
 
     @Override
     public void onInitSuccess() {
+        //Create a container for the masterpass button and add layout parameter
+        RelativeLayout payActivityLayout = new RelativeLayout(this);
+        payActivityLayout.setLayoutParams(new RelativeLayout.LayoutParams( RelativeLayout.LayoutParams.MATCH_PARENT
+                , RelativeLayout.LayoutParams.MATCH_PARENT ));
+        RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT
+                , RelativeLayout.LayoutParams.WRAP_CONTENT);
+        lp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+
+        //Create the button and place it to the bottom of the page
         MasterpassButton masterpassButton =
                 MasterpassMerchant.getMasterpassButton(MasterpassButton.WEB_FLOW_ENABLED, this);
-        ViewGroup.LayoutParams layout = masterpassButton.getLayoutParams();
-
-        this.addContentView(masterpassButton,
-                new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
-                        LinearLayout.LayoutParams.WRAP_CONTENT));
+        masterpassButton.setLayoutParams(lp);
+        Log.i("MasterpassButton Id: ", Integer.toString((masterpassButton.getId())));
+        payActivityLayout.addView(masterpassButton, lp);
+        addContentView(payActivityLayout, new RelativeLayout.LayoutParams( RelativeLayout.LayoutParams.MATCH_PARENT
+                , RelativeLayout.LayoutParams.MATCH_PARENT ) );
     }
 
     @Override
