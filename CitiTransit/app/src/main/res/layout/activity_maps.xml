@@ -7,21 +7,62 @@
     android:orientation="vertical"
     tools:context="com.citi.cititransit.MapsActivity">
 
-    <EditText
+
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:layout_marginLeft="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="From    "
+            android:id="@+id/tvDistance" />
+
+        <EditText
         android:id="@+id/etOrigin"
+        android:layout_width="322dp"
+        android:layout_height="wrap_content"
         android:hint="Enter origin address" />
 
-    <EditText
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter destination address"
-        android:id="@+id/etDestination" />
+        android:orientation="horizontal"
+        android:weightSum="1">
 
+        <TextView
+            android:layout_marginLeft="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="To         "
+            android:id="@+id/tvDistance" />
+
+    <EditText
+        android:id="@+id/etDestination"
+        android:layout_width="319dp"
+        android:layout_height="wrap_content"
+        android:hint="Enter destination address"
+        android:layout_weight="0.06" />
+
+
+</LinearLayout>
+
+    <Button
+        android:layout_alignParentRight="true"
+        android:id="@+id/enterSearchButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Search" />
     <fragment
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
+
 </LinearLayout>
