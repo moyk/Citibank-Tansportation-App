@@ -44,7 +44,7 @@
         </activity>
         <activity
             android:name=".PayActivity"
-            android:label="Pay"/>
+            android:label="Pay" />
         <activity
             android:name=".Recommendation"
             android:label="Recommend"/>

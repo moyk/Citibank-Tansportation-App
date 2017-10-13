@@ -9,6 +9,7 @@ import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mastercard.mp.checkout.Amount;
@@ -49,12 +50,22 @@ public class PayActivity extends AppCompatActivity implements MasterpassInitCall
         //Create the ListView for the transportation tickets
         List<Ticket> testList = new ArrayList<>();
         testList.add(new Ticket("Subway", 2.75));
-        testList.add(new Ticket("CitiBike", 13.25));
+        testList.add(new Ticket("CitiBike", 3.00));
 
         TicketListRowAdapter ticketsAdapter = new TicketListRowAdapter(this, R.layout.ticketlist_row, testList);
         ListView ticketsList = (ListView)findViewById(R.id.ticketList);
         ticketsList.setAdapter(ticketsAdapter);
 
+        //Calculate the subtotal of all tickets
+        double subTotal = 0;
+        for(Ticket ticket : testList){
+            subTotal += ticket.getTicketPrice();
+        }
+        TextView ticketSubTotal = (TextView)findViewById(R.id.subtotal);
+        ticketSubTotal.setText(Double.toString(subTotal));
+        // Set the total amount text
+        TextView ticketTotal = (TextView)findViewById(R.id.total);
+        ticketTotal.setText(Double.toString(subTotal));
 
         String signature = "LOCAL_TESTING";  // will be provided by Masterpass, use "LOCAL_TESTING" to test integration
 
