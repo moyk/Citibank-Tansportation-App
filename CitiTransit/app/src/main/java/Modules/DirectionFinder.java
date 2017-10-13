@@ -1,6 +1,7 @@
 package Modules;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.google.android.gms.maps.model.LatLng;
 
@@ -24,7 +25,7 @@ import java.util.List;
  */
 public class DirectionFinder {
     private static final String DIRECTION_URL_API = "https://maps.googleapis.com/maps/api/directions/json?";
-    private static final String GOOGLE_API_KEY = "AIzaSyAW4bRU6CE4ObEZOMf6MVocyWyasGMPhU8";
+    private static final String GOOGLE_API_KEY = "AIzaSyDnwLF2-WfK8cVZt9OoDYJ9Y8kspXhEHfI";
     private DirectionFinderListener listener;
     private String origin;
     private String destination;
@@ -41,16 +42,21 @@ public class DirectionFinder {
     }
 
     private String createUrl() throws UnsupportedEncodingException {
+        Log.i("test",origin);
+        Log.i("test",destination);
         String urlOrigin = URLEncoder.encode(origin, "utf-8");
         String urlDestination = URLEncoder.encode(destination, "utf-8");
+        Log.i("test",DIRECTION_URL_API + "origin=" + urlOrigin + "&destination=" + urlDestination + "&key=" + GOOGLE_API_KEY);
 
         return DIRECTION_URL_API + "origin=" + urlOrigin + "&destination=" + urlDestination + "&key=" + GOOGLE_API_KEY;
+
     }
 
     private class DownloadRawData extends AsyncTask<String, Void, String> {
 
         @Override
         protected String doInBackground(String... params) {
+            Log.i("test","sucess1");
             String link = params[0];
             try {
                 URL url = new URL(link);
@@ -75,6 +81,7 @@ public class DirectionFinder {
 
         @Override
         protected void onPostExecute(String res) {
+            Log.i("test","sucess2");
             try {
                 parseJSon(res);
             } catch (JSONException e) {
@@ -84,8 +91,11 @@ public class DirectionFinder {
     }
 
     private void parseJSon(String data) throws JSONException {
-        if (data == null)
+        if (data == null) {
+            Log.i("test","data is Null");
             return;
+        }
+        Log.i("test","sucess3");
 
         List<Route> routes = new ArrayList<Route>();
         JSONObject jsonData = new JSONObject(data);
@@ -111,6 +121,12 @@ public class DirectionFinder {
             route.points = decodePolyLine(overview_polylineJson.getString("points"));
 
             routes.add(route);
+
+            Log.i("test", String.valueOf(route.distance));
+            Log.i("test", String.valueOf(route.duration));
+            Log.i("test", String.valueOf(route.startAddress));
+            Log.i("test", String.valueOf(route.endAddress));
+
         }
 
         listener.onDirectionFinderSuccess(routes);

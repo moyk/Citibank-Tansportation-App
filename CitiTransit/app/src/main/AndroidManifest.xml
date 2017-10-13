@@ -31,7 +31,7 @@
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyBJw3bn5d_27QjNMraTfvhmV1HhFqdGzyQ" />
+            android:value="bb0439468cbcab8afb910b1906b19e9ee36c91e9" />
 
         <activity
             android:name=".MapsActivity"
@@ -45,6 +45,9 @@
         <activity
             android:name=".PayActivity"
             android:label="Pay"/>
+        <activity
+            android:name=".Recommendation"
+            android:label="Recommend"/>
     </application>
 
 </manifest>

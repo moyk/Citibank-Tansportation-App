@@ -1,76 +1,113 @@
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:map="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_height="match_parent"
-    android:layout_width="match_parent"
-    android:orientation="vertical"
-    tools:context="com.citi.cititransit.MapsActivity">
-
-
 
     <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:map="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
+        android:orientation="vertical"
+        tools:context="com.citi.cititransit.MapsActivity">
 
-        <TextView
-            android:layout_marginLeft="5dp"
-            android:layout_width="wrap_content"
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="From    "
-            android:id="@+id/tvDistance" />
+            android:orientation="horizontal"
+            >
 
-        <EditText
-        android:id="@+id/etOrigin"
-        android:layout_width="322dp"
-        android:layout_height="wrap_content"
-        android:hint="Enter origin address" />
+            <TextView
+                android:layout_marginLeft="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="From    "
+                android:id="@+id/tvDistance" />
+
+            <EditText
+                android:id="@+id/etOrigin"
+                android:layout_width="322dp"
+                android:layout_height="wrap_content"
+                android:hint="Enter origin address" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <TextView
+                android:layout_marginLeft="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="To         "
+                android:id="@+id/tvDistance" />
+
+            <EditText
+                android:id="@+id/etDestination"
+                android:layout_width="319dp"
+                android:layout_height="wrap_content"
+                android:hint="Enter destination address"
+                android:layout_weight="0.06" />
+
+
+
+        </LinearLayout>
+
+
+        <Button
+            android:layout_alignParentRight="true"
+            android:id="@+id/btnFindPath"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Search" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <ImageView
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_distance"/>
+            <TextView
+                android:layout_marginLeft="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0 km"
+                android:id="@+id/tvDistance" />
+
+            <ImageView
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:padding="5dp"
+                android:src="@drawable/ic_clock"/>
+            <TextView
+                android:layout_marginLeft="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0 min"
+                android:id="@+id/tvDuration" />
+
+
+            <Button
+                android:id="@+id/detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="CHECK dETAIL" />
+
+        </LinearLayout>
+
+        <fragment
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
     </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="1">
-
-        <TextView
-            android:layout_marginLeft="5dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="To         "
-            android:id="@+id/tvDistance2" />
-
-    <EditText
-        android:id="@+id/etDestination"
-        android:layout_width="319dp"
-        android:layout_height="wrap_content"
-        android:hint="Enter destination address"
-        android:layout_weight="0.06" />
-
-
-</LinearLayout>
-
-    <Button
-        android:layout_alignParentRight="true"
-        android:id="@+id/enterSearchButton"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Search" />
-
-    <Button
-        android:layout_alignParentRight="true"
-        android:id="@+id/payTest"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Test" />
-
-    <fragment
-        android:id="@+id/map"
-        android:name="com.google.android.gms.maps.SupportMapFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-
-</LinearLayout>
