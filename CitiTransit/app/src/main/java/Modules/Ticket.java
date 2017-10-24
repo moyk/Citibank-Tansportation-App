@@ -1,7 +1,7 @@
 package Modules;
 
 /**
- * Created by nick on 10/13/17.
+ * Created by yianmo on 10/13/17.
  */
 
 public class Ticket {

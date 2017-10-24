@@ -21,7 +21,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="From    "
-                android:id="@+id/tvDistance" />
+                android:id="@+id/From" />
 
             <EditText
                 android:id="@+id/etOrigin"
@@ -42,7 +42,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="To         "
-                android:id="@+id/tvDistance" />
+                android:id="@+id/To" />
 
             <EditText
                 android:id="@+id/etDestination"
@@ -103,6 +103,11 @@
                 android:text="CHECK dETAIL" />
 
         </LinearLayout>
+
+        <requestFocus
+            layout_width="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
         <fragment
             android:id="@+id/map"

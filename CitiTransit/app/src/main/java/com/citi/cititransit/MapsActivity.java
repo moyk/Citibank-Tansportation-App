@@ -40,6 +40,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private List<Marker> destinationMarkers = new ArrayList<>();
     private List<Polyline> polylinePaths = new ArrayList<>();
     private ProgressDialog progressDialog;
+    private String distance, duration;
+    public List<Route> routes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +68,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MapsActivity.this, Recommendation.class);
+                Bundle bundle=new Bundle();
+                intent.putExtra("distance", distance);
+                intent.putExtra("duration", duration);
+                intent.putExtra("origin", etOrigin.getText().toString());
+                intent.putExtra("destination", etDestination.getText().toString());
                 startActivity(intent);
             }
         });
@@ -118,6 +125,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     @Override
     public void onDirectionFinderSuccess(List<Route> routes) {
+        routes=routes;
         progressDialog.dismiss();
         polylinePaths = new ArrayList<>();
         originMarkers = new ArrayList<>();
@@ -125,13 +133,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         Log.i("test","yes3");
 
 /*        if (routes.size()==0){
-            progressDialog = ProgressDialog.show(this, "Couldn't find result", true);
+            progressDialog = ProgressDialog.show(this, "error", "Couldn't find result", true);
+            progressDialog.dismiss();
         }*/
 
         for (Route route : routes) {
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(route.startLocation, 16));
             ((TextView) findViewById(R.id.tvDuration)).setText(route.duration.text);
             ((TextView) findViewById(R.id.tvDistance)).setText(route.distance.text);
+            distance=route.distance.text;
+            duration=route.duration.text;
+
             Log.i("test","yes4");
 
             originMarkers.add(mMap.addMarker(new MarkerOptions()
@@ -163,6 +175,27 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         LatLng sydney = new LatLng(40.7, -73.97);
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+
+/*        mMap = googleMap;
+        LatLng hcmus = new LatLng(40.7, -73.97);
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(hcmus, 18));
+        originMarkers.add(mMap.addMarker(new MarkerOptions()
+                .title("Marker in nyc")
+                .position(hcmus)));
+
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        mMap.setMyLocationEnabled(true);
+
+    }*/
 
     }
 }
