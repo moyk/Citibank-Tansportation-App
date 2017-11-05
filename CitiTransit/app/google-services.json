@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "727411656086",
+    "firebase_url": "https://citigo-45c6c.firebaseio.com",
+    "project_id": "citigo-45c6c",
+    "storage_bucket": "citigo-45c6c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:727411656086:android:7826307841441410",
+        "android_client_info": {
+          "package_name": "com.citi.cititransit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "727411656086-38dvgl2dvuq25svo4evud7ero3ees6ts.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCyHemNsHw18xslnYePZ7ZnL4udBAwc0a4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
