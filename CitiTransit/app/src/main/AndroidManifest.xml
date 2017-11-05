@@ -30,24 +30,30 @@
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyAd7BS-PW5TQSPMebQ5OjJbJWsRuJAYueY	" />
+            android:value="AIzaSyAd7BS-PW5TQSPMebQ5OjJbJWsRuJAYueY " />
 
         <activity
             android:name=".MapsActivity"
-            android:label="@string/title_activity_maps">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:label="@string/title_activity_maps"></activity>
         <activity
             android:name=".PayActivity"
             android:label="Pay" />
         <activity
             android:name=".Recommendation"
             android:label="Recommend" />
-        <activity android:name=".UserSignUpActivity"></activity>
+
+        <activity
+            android:name=".UserSignUpActivity"
+            android:label="Sign Up">
+        </activity>
+
+        <activity android:name=".UserSignInActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

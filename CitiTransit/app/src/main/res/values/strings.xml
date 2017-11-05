@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">CitiTransit</string>
     <string name="title_activity_maps">Map</string>
+    <string name="enter_email">Enter email</string>
+    <string name="enter_password">Enter password</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="new_user_guide">New User? Sign up here</string>
 </resources>

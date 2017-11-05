@@ -17,12 +17,12 @@
             android:layout_height="wrap_content"
             android:layout_margin="30dp"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="New User"
+            android:text="CitiGo"
             android:id="@+id/textView"
             android:layout_gravity="center_horizontal" />
 
         <EditText
-            android:id="@+id/editTextEmail"
+            android:id="@+id/loginEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
@@ -32,7 +32,7 @@
             android:inputType="textEmailAddress" />
 
         <EditText
-            android:id="@+id/editTextPassword"
+            android:id="@+id/loginPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
@@ -41,23 +41,31 @@
             android:hint="@string/enter_password"
             android:inputType="textPassword" />
 
-        <EditText
-            android:id="@+id/editTextConfirmPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="25dp"
-            android:layout_marginRight="25dp"
-            android:hint="@string/confirm_password"
-            android:inputType="textPassword"/>
-
         <Button
-            android:id="@+id/buttonSignup"
+            android:id="@+id/buttonLogin"
+            android:background="@color/colorPrimary"
+            android:textColor="@color/white"
             android:layout_width="195dp"
             android:layout_height="wrap_content"
             android:layout_margin="25dp"
             android:layout_gravity="center"
-            android:text="Signup" />
+            android:text="Login" />
+
+        <TextView
+            android:text="@string/new_user_guide"
+            android:id="@+id/newUserSignUp"
+            android:textAlignment="center"
+            android:layout_margin="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/google_sign_in_button"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"/>
 
     </LinearLayout>
 
