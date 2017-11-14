@@ -26,9 +26,13 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 
 import org.w3c.dom.Text;
+
+import Modules.User;
 
 public class UserSignInActivity extends AppCompatActivity {
 
@@ -39,6 +43,7 @@ public class UserSignInActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private AlertDialog regiAlert;
     private GoogleApiClient mGoogleApiClient;
+    private GoogleSignInOptions gso;
     private static final int RC_SIGN_IN = 9001;
 
     private static final String TAG = "SignInActivity";
@@ -52,16 +57,14 @@ public class UserSignInActivity extends AppCompatActivity {
         userPassword = (EditText)findViewById(R.id.loginPassword);
         loginButton = (Button)findViewById(R.id.buttonLogin);
         newUserTextView = (TextView) findViewById(R.id.newUserSignUp);
-        firebaseAuth = FirebaseAuth.getInstance();
-
-
         /**
          * GOOGLE SIGN IN
          * Configure sign-in to request the user's ID, email address, and basic
          * profile. ID and basic profile are included in DEFAULT_SIGN_IN.
          */
 
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.credential))
                 .requestEmail()
                 .build();
 
@@ -78,7 +81,7 @@ public class UserSignInActivity extends AppCompatActivity {
                 } /* OnConnectionFailedListener */)
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
-
+        firebaseAuth = FirebaseAuth.getInstance();
 
         //Button activities for user sign in page
         loginButton.setOnClickListener(new View.OnClickListener() {
@@ -125,10 +128,10 @@ public class UserSignInActivity extends AppCompatActivity {
             } else {
                 // Google Sign In failed, update UI appropriately
                 // ...
-
                 //TODO: CANNOT FUNCTION YET, NEED FIX
                 Toast.makeText(UserSignInActivity.this, "Sign in failed",
                         Toast.LENGTH_SHORT).show();
+
             }
         }
     }
@@ -150,7 +153,6 @@ public class UserSignInActivity extends AppCompatActivity {
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
                             Toast.makeText(UserSignInActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
-
                         }
                     }
                 });
@@ -174,13 +176,14 @@ public class UserSignInActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()) {
+
                             AlertDialog.Builder alertBuilder = new AlertDialog.Builder(UserSignInActivity.this);
-                            alertBuilder.setMessage("Register Successful")
+                            alertBuilder.setMessage("Sign In Successful")
                                     .setCancelable(false)
                                     .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialogInterface, int i) {
-                                            startActivity(new Intent(UserSignInActivity.this, MapsActivity.class));
+                                            startActivity(new Intent(UserSignInActivity.this, UserProfileActivity.class));
                                         }
                                     });
                             regiAlert = alertBuilder.create();
@@ -195,4 +198,5 @@ public class UserSignInActivity extends AppCompatActivity {
         );
 
     }
+
 }

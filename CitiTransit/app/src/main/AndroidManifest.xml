@@ -34,18 +34,16 @@
 
         <activity
             android:name=".MapsActivity"
-            android:label="@string/title_activity_maps"></activity>
+            android:label="@string/title_activity_maps" />
         <activity
             android:name=".PayActivity"
             android:label="Pay" />
         <activity
             android:name=".Recommendation"
             android:label="Recommend" />
-
         <activity
             android:name=".UserSignUpActivity"
-            android:label="Sign Up">
-        </activity>
+            android:label="Sign Up" />
 
         <activity android:name=".UserSignInActivity">
             <intent-filter>
@@ -53,6 +51,10 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+
+        <activity android:name=".UserProfileActivity">
+
         </activity>
     </application>
 
