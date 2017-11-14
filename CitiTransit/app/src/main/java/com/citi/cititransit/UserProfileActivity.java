@@ -45,39 +45,42 @@ public class UserProfileActivity extends AppCompatActivity {
         );
         dbMapper = DynamoDBMapper.builder().dynamoDBClient(ddbClient).build();
 
-        userName = (TextView) findViewById(R.id.userProfName);
+        userName = (TextView) findViewById(R.id.user_profile_name);
         email = (TextView) findViewById(R.id.userProfEmail);
 
         mAuth = FirebaseAuth.getInstance();
-
-        Runnable runnable = new Runnable() {
-            @Override
-            public void run() {
-                currentUser = dbMapper.load(User.class, mAuth.getCurrentUser().getUid());
-                if(currentUser == null){
-                    currentUser = newUserGen(mAuth.getCurrentUser().getEmail(), firebaseAuth.getCurrentUser().getUid());
-                    Log.d("UserSignUpActivity", currentUser.getUserId().toString());
-                    dbMapper.save(currentUser);
-                }
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        userName.setText(currentUser.getUserName());
-                        email.setText(currentUser.getUserEmail());
+        //if current page is first time load in then perform a load from database
+        if(currentUser == null) {
+            Runnable runnable = new Runnable() {
+                @Override
+                public void run() {
+                    //load from db if it is null, generate a new instance for this user
+                    currentUser = dbMapper.load(User.class, mAuth.getCurrentUser().getUid());
+                    if (currentUser == null) {
+                        currentUser = newUserGen(mAuth.getCurrentUser().getEmail(), firebaseAuth.getCurrentUser().getUid());
+                        Log.d("UserSignUpActivity", currentUser.getUserId().toString());
+                        dbMapper.save(currentUser);
                     }
-                });
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            userName.setText(currentUser.getUserName());
+                            email.setText(currentUser.getUserEmail());
+                        }
+                    });
 
-            }
-        };
-        Thread dbThread = new Thread(runnable);
-        dbThread.start();
+                }
+            };
+            Thread dbThread = new Thread(runnable);
+            dbThread.start();
+        }
     }
 
     private User newUserGen(String email, String firebaseUserId){
         User user = new User();
         user.setUserEmail(email);
         user.setUserId(firebaseUserId);
-        user.setUserName(email);
+        user.setUserName(email.split("@")[0]);
         return user;
     }
 
