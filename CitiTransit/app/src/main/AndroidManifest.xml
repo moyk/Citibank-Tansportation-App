@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.citi.cititransit">
 
     <!--
@@ -56,6 +57,16 @@
         <activity android:name=".UserProfileActivity">
 
         </activity>
+        <activity
+            android:name=".PayActivity"
+            android:label="Pay" />
+        <activity
+            android:name=".Recommendation"
+            android:label="Recommend"/>
+        <activity
+            android:name=".RouteChoices"
+            android:label="Route"/>
+
     </application>
 
 </manifest>

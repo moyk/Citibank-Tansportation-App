@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/CitiTransit.iml" filepath="$PROJECT_DIR$/CitiTransit.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/google-maps-services-java-master/google-maps-services-java-master.iml" filepath="$PROJECT_DIR$/google-maps-services-java-master/google-maps-services-java-master.iml" />
     </modules>
   </component>
 </project>

@@ -46,9 +46,10 @@ public class DirectionFinder {
         //Log.i("test",destination);
         String urlOrigin = URLEncoder.encode(origin, "utf-8");
         String urlDestination = URLEncoder.encode(destination, "utf-8");
-        Log.i("test",DIRECTION_URL_API + "origin=" + urlOrigin + "&destination=" + urlDestination + "&key=" + GOOGLE_API_KEY);
+        Log.i("test",DIRECTION_URL_API + "origin=" + urlOrigin + "&destination=" + urlDestination + "&mode=transit" +"&key=" + GOOGLE_API_KEY);
 
-        return DIRECTION_URL_API + "origin=" + urlOrigin + "&destination=" + urlDestination + "&key=" + GOOGLE_API_KEY;
+        return DIRECTION_URL_API + "origin=" + urlOrigin + "&destination=" + urlDestination +  "&mode=transit" + "&key=" + GOOGLE_API_KEY;
+
 
     }
 

@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Created by yianmo on 10/13/17.
  */
-public class Route {
+public class Route  {
     public Distance distance;
     public Duration duration;
     public String endAddress;
@@ -16,4 +16,5 @@ public class Route {
     public LatLng startLocation;
 
     public List<LatLng> points;
+
 }
