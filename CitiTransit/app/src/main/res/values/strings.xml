@@ -1,9 +1,10 @@
 <resources>
-    <string name="app_name">CitiTransit</string>
+    <string name="app_name">GoogleMapsDirections</string>
     <string name="title_activity_maps">Map</string>
     <string name="enter_email">Enter email</string>
     <string name="enter_password">Enter password</string>
     <string name="confirm_password">Confirm password</string>
     <string name="new_user_guide">New User? Sign up here</string>
     <string name="credential">950689894063-5m8s941o98q5b9ojrthekpksqnnpsku1.apps.googleusercontent.com</string>
+    <string name="fragment_map__search">Search...</string>
 </resources>

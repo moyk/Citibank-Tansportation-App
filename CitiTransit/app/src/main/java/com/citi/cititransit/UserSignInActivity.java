@@ -2,10 +2,10 @@ package com.citi.cititransit;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -26,13 +26,6 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.GoogleAuthProvider;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
-
-import org.w3c.dom.Text;
-
-import Modules.User;
 
 public class UserSignInActivity extends AppCompatActivity {
 
@@ -183,7 +176,7 @@ public class UserSignInActivity extends AppCompatActivity {
                                     .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialogInterface, int i) {
-                                            startActivity(new Intent(UserSignInActivity.this, UserProfileActivity.class));
+                                            startActivity(new Intent(UserSignInActivity.this, MapsActivity.class));
                                         }
                                     });
                             regiAlert = alertBuilder.create();

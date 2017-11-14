@@ -5,8 +5,8 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:orientation="vertical"
-        tools:context="com.citi.cititransit.MapsActivity">
+        tools:context="com.citi.cititransit.MapsActivity"
+        android:orientation="vertical">
 
 
 
@@ -68,33 +68,6 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             >
-            <ImageView
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="5dp"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/ic_distance"/>
-            <TextView
-                android:layout_marginLeft="5dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0 km"
-                android:id="@+id/tvDistance" />
-
-            <ImageView
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="5dp"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:padding="5dp"
-                android:src="@drawable/ic_clock"/>
-            <TextView
-                android:layout_marginLeft="5dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0 min"
-                android:id="@+id/tvDuration" />
-
 
             <Button
                 android:id="@+id/detail"
@@ -105,7 +78,7 @@
         </LinearLayout>
 
         <requestFocus
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
         <fragment
@@ -113,5 +86,12 @@
             android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
+
+        <Button
+            android:id="@+id/payTest"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="Pay" />
 
     </LinearLayout>
