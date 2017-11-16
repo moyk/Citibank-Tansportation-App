@@ -58,7 +58,7 @@
             android:textSize="15dp"/>
 
         <Button
-            android:id="@+id/buttonLogin"
+            android:id="@+id/buttonSignUp"
             android:background="#62A2EE"
             android:textColor="@color/white"
             android:layout_width="190dp"

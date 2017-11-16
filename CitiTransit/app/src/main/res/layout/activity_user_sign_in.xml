@@ -40,7 +40,6 @@
             android:hint="@string/enter_email"
             android:padding="8dp"
             android:inputType="textEmailAddress"
-            android:textColor="@color/white"
             android:alpha="0.9"/>
 
         <EditText

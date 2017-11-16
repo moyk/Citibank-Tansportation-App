@@ -35,7 +35,7 @@ public class UserSignUpActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user_sign_up);
 
         //Initial values
-        this.buttonSignUp = (Button) findViewById(R.id.buttonSignup);
+        this.buttonSignUp = (Button) findViewById(R.id.buttonSignUp);
         this.emailAddress = (EditText) findViewById(R.id.editTextEmail);
         this.password = (EditText) findViewById(R.id.editTextPassword);
         this.confirmPassword = (EditText) findViewById(R.id.editTextConfirmPassword);

@@ -91,12 +91,12 @@ public class UserSignInActivity extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.google_sign_in_button).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                signIn();
-            }
-        });
+//        findViewById(R.id.buttonLogin).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                signIn();
+//            }
+//        });
     }
 
     /**
