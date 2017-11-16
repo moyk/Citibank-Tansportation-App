@@ -16,6 +16,7 @@
             android:layout_height="200dp"
             android:scaleType="centerCrop"
             android:background="@color/colorPrimary" />
+
         <ImageButton
             android:id="@+id/user_profile_photo"
             android:layout_width="120dp"
