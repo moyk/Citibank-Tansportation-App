@@ -43,13 +43,13 @@
         android:orientation="vertical"
         android:weightSum="1">
 
-    <TextView
-        android:id="@+id/costInfoID"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textSize="18sp"
-        android:layout_weight="0.18" />
+        <TextView
+            android:id="@+id/costInfoID"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textSize="18sp"
+            android:layout_weight="0.18" />
     </LinearLayout>
 
 </LinearLayout>

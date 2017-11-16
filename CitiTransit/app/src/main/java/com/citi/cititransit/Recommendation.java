@@ -167,7 +167,7 @@ public class Recommendation extends AppCompatActivity {
         return geoApiContext
                 .queryRateLimit(3)
                 .apiKey("AIzaSyAd7BS-PW5TQSPMebQ5OjJbJWsRuJAYueY")
-                .connectTimeout(1, TimeUnit.SECONDS)
+                .connectTimeout(0, TimeUnit.SECONDS)
                 .readTimeout(1, TimeUnit.SECONDS)
                 .writeTimeout(1, TimeUnit.SECONDS).build();
     }

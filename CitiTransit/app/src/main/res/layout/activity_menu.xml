@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.citi.cititransit.UserProfileActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="#62A2EE"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/profile_image"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.87"
+            android:src="@drawable/default_user_thumbnail" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="CitiGo"
+            android:textColor="@android:color/white"
+            android:textSize="15dp"
+            android:id="@+id/textView"
+            android:layout_gravity="center_horizontal" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/>
+
+    <Button
+        android:layout_alignParentRight="true"
+        android:id="@+id/profile"
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:text="Profile"
+        android:background="@android:color/white"
+        android:textColor="#8c8c8c"
+        android:textSize="15dp"
+        android:paddingLeft="20dp"
+        android:drawableLeft="@drawable/ic_004_user"
+        android:drawablePadding="-220dp"
+        android:gravity="center"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/>
+
+    <Button
+        android:layout_alignParentRight="true"
+        android:id="@+id/history"
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:text="HISTORY"
+        android:background="@android:color/white"
+        android:textColor="#8c8c8c"
+        android:textSize="15dp"
+        android:paddingLeft="22dp"
+        android:drawableLeft="@drawable/ic_003_clock"
+        android:drawablePadding="-220dp"
+        android:gravity="center"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/>
+    <Button
+        android:layout_alignParentRight="true"
+        android:id="@+id/payment"
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:text="PAYMENT"
+        android:background="@android:color/white"
+        android:textColor="#8c8c8c"
+        android:textSize="15dp"
+        android:paddingLeft="24dp"
+        android:drawableLeft="@drawable/ic_001_coin"
+        android:drawablePadding="-220dp"
+        android:gravity="center"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/>
+
+    <Button
+        android:layout_alignParentRight="true"
+        android:id="@+id/settings"
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:text="SETTINGS"
+        android:background="@android:color/white"
+        android:textColor="#8c8c8c"
+        android:textSize="15dp"
+        android:paddingLeft="24dp"
+        android:drawableLeft="@drawable/ic_002_settings"
+        android:drawablePadding="-220dp"
+        android:gravity="center"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/>
+
+
+
+</LinearLayout>
+
