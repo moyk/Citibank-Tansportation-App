@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">GoogleMapsDirections</string>
+    <string name="app_name">CitiGO</string>
     <string name="title_activity_maps">Map</string>
     <string name="enter_email">Enter email</string>
     <string name="enter_password">Enter password</string>

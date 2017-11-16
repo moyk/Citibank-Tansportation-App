@@ -40,7 +40,7 @@ import Modules.Route;
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, DirectionFinderListener{
 
     private GoogleMap mMap;
-    private Button btnFindPath,detail;
+    private Button detail;
     private EditText etOrigin, etDestination;
     private List<Marker> originMarkers = new ArrayList<>();
     private List<Marker> destinationMarkers = new ArrayList<>();
@@ -58,19 +58,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-        btnFindPath = (Button) findViewById(R.id.btnFindPath);
+
         etOrigin = (EditText) findViewById(R.id.etOrigin);
         etDestination = (EditText) findViewById(R.id.etDestination);
+//        btnFindPath = (Button) findViewById(R.id.searchButton);
+//        btnFindPath.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                sendRequest();
+//                Log.i("test","yes1");
+//            }
+//        });
 
-        btnFindPath.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sendRequest();
-                Log.i("test","yes1");
-            }
-        });
-
-        detail = (Button) findViewById(R.id.detail);
+        detail = (Button) findViewById(R.id.searchButton);
         detail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
