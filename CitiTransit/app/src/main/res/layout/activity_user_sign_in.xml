@@ -40,7 +40,8 @@
             android:hint="@string/enter_email"
             android:padding="8dp"
             android:inputType="textEmailAddress"
-            android:textColor="@color/white"/>
+            android:textColor="@color/white"
+            android:alpha="0.9"/>
 
         <EditText
             android:id="@+id/loginPassword"
@@ -54,7 +55,8 @@
             android:textSize="14dp"
             android:padding="8dp"
             android:hint="@string/enter_password"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:alpha="0.9"/>
 
         <Button
             android:id="@+id/buttonLogin"
@@ -65,7 +67,8 @@
             android:layout_margin="25dp"
             android:layout_gravity="center"
             android:text="Login"
-            android:shadowColor="@color/grey"/>
+            android:shadowColor="@color/grey"
+            android:alpha="0.9"/>
 
         <TextView
             android:text="@string/new_user_guide"

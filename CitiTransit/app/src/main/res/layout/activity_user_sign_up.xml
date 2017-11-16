@@ -18,46 +18,56 @@
             android:layout_margin="30dp"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="New User"
+            android:textSize="25dp"
+            android:fontFamily="@string/"
             android:id="@+id/textView"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/grey"/>
 
         <EditText
             android:id="@+id/editTextEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="5dp"
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
             android:hint="@string/enter_email"
-            android:inputType="textEmailAddress" />
+            android:inputType="textEmailAddress"
+            android:textSize="15dp"/>
 
         <EditText
             android:id="@+id/editTextPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="5dp"
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
             android:hint="@string/enter_password"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:textSize="15dp"/>
 
         <EditText
             android:id="@+id/editTextConfirmPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="5dp"
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
             android:hint="@string/confirm_password"
-            android:inputType="textPassword"/>
+            android:inputType="textPassword"
+            android:textSize="15dp"/>
 
         <Button
-            android:id="@+id/buttonSignup"
-            android:layout_width="195dp"
-            android:layout_height="wrap_content"
+            android:id="@+id/buttonLogin"
+            android:background="#62A2EE"
+            android:textColor="@color/white"
+            android:layout_width="190dp"
+            android:layout_height="35dp"
             android:layout_margin="25dp"
             android:layout_gravity="center"
-            android:text="Signup" />
+            android:text="Sign up"
+            android:shadowColor="@color/grey"/>
+
 
     </LinearLayout>
 

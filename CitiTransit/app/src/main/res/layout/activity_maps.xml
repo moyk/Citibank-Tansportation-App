@@ -9,22 +9,22 @@
         android:orientation="vertical">
 
         <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
             <LinearLayout
+                android:id="@+id/linearLayout2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:background="@color/colorPrimary"
-                android:id="@+id/linearLayout2">
+                android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_marginTop="12dp"
-                    android:layout_marginRight="6dp"
-                    android:layout_marginLeft="14dp"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
+                    android:layout_marginLeft="14dp"
+                    android:layout_marginRight="6dp"
+                    android:layout_marginTop="12dp"
                     android:layout_weight="0.1"
                     android:src="@drawable/circle" />
 
@@ -32,13 +32,13 @@
                 <EditText
                     android:id="@+id/etOrigin"
                     android:layout_width="319dp"
-                    android:layout_marginRight="20dp"
                     android:layout_height="40dp"
+                    android:layout_marginRight="20dp"
                     android:layout_weight="1"
                     android:backgroundTint="@android:color/white"
                     android:hint="from"
                     android:textColorHint="@color/white"
-                    android:textSize="17dp" />
+                    android:textSize="15dp" />
 
             </LinearLayout>
 
@@ -46,17 +46,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="35dp"
+                android:background="@color/colorPrimary"
                 android:orientation="horizontal"
                 android:weightSum="1"
-                android:background="@color/colorPrimary">
+                android:id="@+id/linearLayout3">
 
 
                 <ImageView
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="6dp"
-                    android:layout_marginLeft="12dp"
                     android:layout_width="23dp"
                     android:layout_height="23dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginRight="6dp"
+                    android:layout_marginTop="10dp"
                     android:layout_weight="0.1"
                     android:src="@drawable/loc" />
 
@@ -64,15 +65,14 @@
                 <EditText
                     android:id="@+id/etDestination"
                     android:layout_width="319dp"
-                    android:layout_marginRight="58dp"
                     android:layout_height="40dp"
                     android:layout_marginBottom="5dp"
-                    android:textSize = "17dp"
+                    android:layout_marginRight="58dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@android:color/white"
                     android:hint="to"
                     android:textColorHint="@color/white"
-                    android:layout_weight="1"
-                    android:backgroundTint="@android:color/white"/>
-
+                    android:textSize="15dp" />
 
 
             </LinearLayout>
@@ -95,17 +95,42 @@
                 android:id="@+id/button3"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_marginTop="450dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
                 android:layout_alignParentEnd="true"
                 android:layout_below="@+id/linearLayout2"
+                android:layout_marginBottom="20dp"
                 android:layout_marginEnd="16dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="450dp"
                 android:background="@drawable/round_button_blue"
                 android:text="Go"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                android:textStyle="normal" />
+
+            <com.google.android.gms.maps.MapView
+                android:id="@+id/mapView"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/linearLayout3" />
+
+            <Button
+                android:id="@+id/button_menu"
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@+id/linearLayout2"
+                android:layout_marginBottom="20dp"
+                android:layout_marginRight="335dp"
+                android:layout_marginTop="450dp"
+                android:background="@drawable/round_button_menu"
+                android:text="M"
+                android:textColor="@color/grey"
                 android:textSize="20dp"
                 android:textStyle="normal"
-                android:textColor="@color/white"/>
+                android:alpha="0.7"
+                android:elevation="10dp"/>
 
 
         </RelativeLayout>
