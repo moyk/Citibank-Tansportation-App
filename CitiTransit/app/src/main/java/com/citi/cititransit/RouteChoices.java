@@ -1,12 +1,12 @@
 package com.citi.cititransit;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -41,6 +41,7 @@ import Modules.checkService;
 
 public class RouteChoices extends AppCompatActivity implements OnMapReadyCallback {
     private Button payTest;
+    private TextView nameTextViewID, infoTextViewID, costInfoID;
     private static final int overview = 0;
     private static final String GOOGLE_API_KEY = "AIzaSyAd7BS-PW5TQSPMebQ5OjJbJWsRuJAYueY";
     private DirectionsRoute route;
@@ -48,13 +49,31 @@ public class RouteChoices extends AppCompatActivity implements OnMapReadyCallbac
     private ArrayList<String> TransitStartStop=new ArrayList<>();
     private ArrayList<String> TransitEndStop=new ArrayList<>();
     private ArrayList<ArrayList<String>> reslist = new ArrayList<>();
+    private  String transitmode, transitdetail, transitcost;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.routechoices);
 
-        payTest = (Button) findViewById(R.id.payTest);
+
+        Intent bundle = getIntent();
+        route=(DirectionsRoute) bundle.getSerializableExtra("parcel_data");
+        TransitLineName= (ArrayList)bundle.getSerializableExtra("TransitLineName");
+        TransitStartStop= (ArrayList)bundle.getSerializableExtra("TransitStartStop");
+        TransitEndStop= (ArrayList)bundle.getSerializableExtra("TransitEndStop");
+        transitmode= (String)bundle.getSerializableExtra("info1");
+        transitdetail= (String)bundle.getSerializableExtra("info2");
+        transitcost= (String)bundle.getSerializableExtra("info3");
+
+        nameTextViewID=findViewById(R.id.nameTextViewID);
+        nameTextViewID.setText(transitmode);
+        infoTextViewID=findViewById(R.id.infoTextViewID);
+        infoTextViewID.setText(transitdetail);
+        costInfoID=findViewById(R.id.costInfoID);
+        costInfoID.setText(transitcost);
+
+        payTest = findViewById(R.id.payTest);
         payTest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -62,12 +81,6 @@ public class RouteChoices extends AppCompatActivity implements OnMapReadyCallbac
                 startActivity(intent);
             }
         });
-
-        Intent bundle = getIntent();
-        route=(DirectionsRoute) bundle.getSerializableExtra("parcel_data");
-        TransitLineName= (ArrayList)bundle.getSerializableExtra("TransitLineName");
-        TransitStartStop= (ArrayList)bundle.getSerializableExtra("TransitStartStop");
-        TransitEndStop= (ArrayList)bundle.getSerializableExtra("TransitEndStop");
 
         if (route!=null)
             Log.i("test", "yes!! successfully passed in routes");
@@ -104,7 +117,7 @@ public class RouteChoices extends AppCompatActivity implements OnMapReadyCallbac
                         List<LatLng> changepath = PolyUtil.decode(transit.routes[0].overviewPolyline.getEncodedPath());
                         if (changepath!=null)
                             Log.i("test","yes we are calling api again");
-                        mMap.addPolyline(new PolylineOptions().color(Color.BLACK).width(30).addAll(changepath));
+                        mMap.addPolyline(new PolylineOptions().color(getResources().getColor(R.color.draworange)).width(30).addAll(changepath));
                     }
                 }
             }
@@ -166,7 +179,7 @@ public class RouteChoices extends AppCompatActivity implements OnMapReadyCallbac
         List<LatLng> newlist= new ArrayList<LatLng>();
         newlist.add(point1);
         newlist.add(point2);
-        mMap.addPolyline(new PolylineOptions().color(Color.BLUE).width(10).addAll(decodedPath));
+        mMap.addPolyline(new PolylineOptions().color(R.color.draworange).width(10).addAll(decodedPath));
         //mMap.addPolyline(new PolylineOptions().color(Color.BLACK).width(10).addAll(newlist));
         checkService(mMap);
 

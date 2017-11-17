@@ -41,6 +41,13 @@ public class Recommendation extends AppCompatActivity {
     private ArrayList<ArrayList<String>> TransitNameArray;
     private ArrayList<ArrayList<String>> TransitStartArray ;
     private ArrayList<ArrayList<String>> TransitEndArray;
+    private ArrayList<String> nameArray ;
+
+    private ArrayList<String> infoArray;
+
+    private ArrayList<Integer> imageArray;
+
+    private ArrayList<String> costArray;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,13 +62,13 @@ public class Recommendation extends AppCompatActivity {
         Log.i("test", "yes"+ destination);
         Log.i("test", "Yes"+ origin);
 
-        ArrayList<String> nameArray = new ArrayList<String>();
+        nameArray = new ArrayList<String>();
 
-        ArrayList<String> infoArray = new ArrayList<String>();
+        infoArray = new ArrayList<String>();
 
-        ArrayList<Integer> imageArray = new ArrayList<Integer>();
+        imageArray = new ArrayList<Integer>();
 
-        ArrayList<String> costArray = new ArrayList<String>();
+        costArray = new ArrayList<String>();
 
         TransitNameArray = new ArrayList<>();
         TransitStartArray = new ArrayList<>();
@@ -73,9 +80,9 @@ public class Recommendation extends AppCompatActivity {
         if (bic != null) {
             Log.i("test", bic.routes[overview].legs[overview].duration.humanReadable);
             nameArray.add("Bicycle");
-            infoArray.add(bic.routes[overview].legs[overview].duration.humanReadable);
-            //imageArray.add(R.drawable.ic_bicycle);
-            costArray.add("free");
+            infoArray.add("");
+            imageArray.add(R.drawable.ic_driving);
+            costArray.add(bic.routes[overview].legs[overview].duration.humanReadable);
             routeArray.add(bic.routes[overview]);
             TransitNameArray.add(new ArrayList<String>());
             TransitStartArray.add(new ArrayList<String>());
@@ -86,9 +93,9 @@ public class Recommendation extends AppCompatActivity {
         if (walk != null) {
             Log.i("test", walk.routes[overview].legs[overview].duration.humanReadable);
             nameArray.add("Walking");
-            infoArray.add(walk.routes[overview].legs[overview].duration.humanReadable);
-            //imageArray.add(R.drawable.ic_walking);
-            costArray.add("free");
+            infoArray.add("");
+            imageArray.add(R.drawable.ic_driving);
+            costArray.add(walk.routes[overview].legs[overview].duration.humanReadable);
             routeArray.add(walk.routes[overview]);
             TransitNameArray.add(new ArrayList<String>());
             TransitStartArray.add(new ArrayList<String>());
@@ -98,9 +105,9 @@ public class Recommendation extends AppCompatActivity {
         if (drive != null) {
             Log.i("test", drive.routes[overview].legs[overview].duration.humanReadable);
             nameArray.add("Driving");
-            infoArray.add(drive.routes[overview].legs[overview].duration.humanReadable);
-            //imageArray.add(R.drawable.ic_driving);
-            costArray.add("free");
+            infoArray.add("");
+            imageArray.add(R.drawable.ic_driving);
+            costArray.add(drive.routes[overview].legs[overview].duration.humanReadable);
             routeArray.add(drive.routes[overview]);
             TransitNameArray.add(new ArrayList<String>());
             TransitStartArray.add(new ArrayList<String>());
@@ -139,7 +146,7 @@ public class Recommendation extends AppCompatActivity {
                 infoArray.add(transitLines);
                 //infoArray.add(drive.routes[overview].legs[overview].duration.humanReadable);
                 imageArray.add(R.drawable.ic_driving);
-                costArray.add("$2.65");
+                costArray.add("$2.65"+"\n"+ transit.routes[overview].legs[overview].duration.humanReadable);
                 TransitNameArray.add(TransitLineName);
                 TransitStartArray.add(TransitStartStop);
                 TransitEndArray.add(TransitEndStop);
@@ -156,6 +163,10 @@ public class Recommendation extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
                 Intent intent = new Intent(Recommendation.this, RouteChoices.class);
+                intent.putExtra("info1", nameArray.get(position));
+                intent.putExtra("info2", infoArray.get(position));
+                intent.putExtra("info3", costArray.get(position));
+                intent.putExtra("info4", imageArray.get(position));
                 intent.putExtra("parcel_data", routeArray.get(position));
                 intent.putExtra("TransitLineName",TransitNameArray.get(position));
                 intent.putExtra("TransitStartStop",TransitStartArray.get(position));
