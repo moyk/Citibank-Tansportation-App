@@ -7,12 +7,12 @@
 
     <ImageView
         android:id="@+id/imageView1ID"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:src="@drawable/ic_clock" />
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="20dp"
+        android:src="@drawable/ic_car_compact" />
 
     <LinearLayout
         android:layout_width="242dp"
@@ -28,14 +28,15 @@
             android:layout_height="wrap_content"
             android:text="TextView"
             android:textSize="14dp"
-            android:textStyle="bold" />
+            android:textStyle="normal" />
 
         <TextView
             android:id="@+id/infoTextViewID"
             android:layout_width="242dp"
             android:layout_height="wrap_content"
             android:text="TextView"
-            android:textSize="12dp" />
+            android:textSize="12dp"
+            android:textStyle="italic"/>
     </LinearLayout>
 
     <LinearLayout

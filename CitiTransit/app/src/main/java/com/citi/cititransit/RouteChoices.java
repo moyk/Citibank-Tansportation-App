@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -50,6 +51,7 @@ import Modules.checkService;
 public class RouteChoices extends AppCompatActivity implements OnMapReadyCallback {
     private Button payTest;
     private TextView nameTextViewID, infoTextViewID, costInfoID;
+    private ImageView imageView1ID;
     private static final int overview = 0;
     private static final String GOOGLE_API_KEY = "AIzaSyAd7BS-PW5TQSPMebQ5OjJbJWsRuJAYueY";
     private DirectionsRoute route;
@@ -58,6 +60,7 @@ public class RouteChoices extends AppCompatActivity implements OnMapReadyCallbac
     private ArrayList<String> TransitEndStop=new ArrayList<>();
     private ArrayList<ArrayList<String>> reslist = new ArrayList<>();
     private  String transitmode, transitdetail, transitcost;
+    private int image;
 
     private String origin;
     private String destination;
@@ -76,6 +79,7 @@ public class RouteChoices extends AppCompatActivity implements OnMapReadyCallbac
         transitmode= (String)bundle.getSerializableExtra("info1");
         transitdetail= (String)bundle.getSerializableExtra("info2");
         transitcost= (String)bundle.getSerializableExtra("info3");
+        image= (Integer) bundle.getSerializableExtra("info4");
 
         nameTextViewID=findViewById(R.id.nameTextViewID);
         nameTextViewID.setText(transitmode);
@@ -83,6 +87,8 @@ public class RouteChoices extends AppCompatActivity implements OnMapReadyCallbac
         infoTextViewID.setText(transitdetail);
         costInfoID=findViewById(R.id.costInfoID);
         costInfoID.setText(transitcost);
+        imageView1ID= findViewById(R.id.imageView1ID);
+        imageView1ID.setImageResource(image);
 
         payTest = (Button) findViewById(R.id.payTest);
 

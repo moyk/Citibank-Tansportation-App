@@ -88,7 +88,7 @@ public class Recommendation extends AppCompatActivity {
             Log.i("test", bic.routes[overview].legs[overview].duration.humanReadable);
             nameArray.add("Bicycle");
             infoArray.add("");
-            imageArray.add(R.drawable.ic_driving);
+            imageArray.add(R.drawable.ic_002_bike);
             costArray.add(bic.routes[overview].legs[overview].duration.humanReadable);
             routeArray.add(bic.routes[overview]);
             TransitNameArray.add(new ArrayList<String>());
@@ -105,7 +105,7 @@ public class Recommendation extends AppCompatActivity {
             Log.i("test", walk.routes[overview].legs[overview].duration.humanReadable);
             nameArray.add("Walking");
             infoArray.add("");
-            imageArray.add(R.drawable.ic_driving);
+            imageArray.add(R.drawable.ic_pedestrian_walking);
             costArray.add(walk.routes[overview].legs[overview].duration.humanReadable);
             routeArray.add(walk.routes[overview]);
             TransitNameArray.add(new ArrayList<String>());
@@ -120,7 +120,7 @@ public class Recommendation extends AppCompatActivity {
             Log.i("test", drive.routes[overview].legs[overview].duration.humanReadable);
             nameArray.add("Driving");
             infoArray.add("");
-            imageArray.add(R.drawable.ic_driving);
+            imageArray.add(R.drawable.ic_car_compact);
             costArray.add(drive.routes[overview].legs[overview].duration.humanReadable);
             routeArray.add(drive.routes[overview]);
             TransitNameArray.add(new ArrayList<String>());
@@ -165,7 +165,7 @@ public class Recommendation extends AppCompatActivity {
                 paymentInfoArray.add(temp);
                 infoArray.add(transitLines);
                 //infoArray.add(drive.routes[overview].legs[overview].duration.humanReadable);
-                imageArray.add(R.drawable.ic_driving);
+                imageArray.add(R.drawable.ic_003_public_transport_subway);
                 costArray.add("$2.65"+"\n"+ transit.routes[overview].legs[overview].duration.humanReadable);
                 TransitNameArray.add(TransitLineName);
                 TransitStartArray.add(TransitStartStop);

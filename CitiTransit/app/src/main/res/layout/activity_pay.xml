@@ -34,7 +34,7 @@
                 android:layout_marginLeft="8dp"
                 android:paddingLeft="8dp"
                 android:text="Subtotal"
-                android:textSize="20dp" />
+                android:textSize="15dp" />
 
             <TextView
                 android:id="@+id/subtotal"
@@ -44,7 +44,7 @@
                 android:gravity="right"
                 android:paddingRight="8dp"
                 android:text="$15.0"
-                android:textSize="20dp" />
+                android:textSize="15dp" />
         </LinearLayout>
 
         <!-- Tax to pay if any -->
@@ -58,7 +58,7 @@
                 android:layout_marginLeft="8dp"
                 android:paddingLeft="8dp"
                 android:text="Tax (if any)"
-                android:textSize="15dp" />
+                android:textSize="14dp" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -67,7 +67,7 @@
                 android:gravity="right"
                 android:paddingRight="8dp"
                 android:text="$0.0"
-                android:textSize="15dp" />
+                android:textSize="14dp" />
 
         </LinearLayout>
 
@@ -86,7 +86,7 @@
                 android:paddingTop="8dp"
                 android:text="Total"
                 android:textColor="#039BE5"
-                android:textSize="22dp"
+                android:textSize="15dp"
                 android:textStyle="bold" />
 
             <TextView
@@ -100,7 +100,7 @@
                 android:paddingTop="8dp"
                 android:text="$15.0"
                 android:textColor="#039BE5"
-                android:textSize="22dp"
+                android:textSize="15dp"
                 android:textStyle="bold" />
 
         </RelativeLayout>
