@@ -1,0 +1,67 @@
+NAME,lang,long,top_to_bottom,reason1,bottom_to_top,reason2
+Far Rockaway-Mott Av,40.603995001687544,-73.75540499924732,good,good,good,good
+Beach 25 St,40.60006600105881,-73.76135299762073,good,good,good,good
+Beach 36 St,40.59539800166876,-73.76817499939688,good,good,good,good
+Beach 44 St,40.59294299908617,-73.77601299999507,good,good,good,good
+Beach 60 St,40.59237400121235,-73.7885219980118,good,good,good,good
+Beach 67 St,40.59092700078133,-73.7969239998421,good,good,good,good
+Beach 90 St,40.58809156457325,-73.81365140419632,good,good,good,good
+Beach 98 St,40.58538569133279,-73.82052058959523,good,good,good,good
+Beach 105 St,40.58326843810286,-73.82758075034528,good,good,good,good
+Rockaway Park-Beach 116 St,40.580955865573515,-73.83559008701239,good,good,good,good
+Broad Channel,40.60840218069683,-73.81583268782963,good,good,good,good
+Howard Beach-JFK Airport,40.66047600004959,-73.83030100071032,good,good,good,good
+Aqueduct-North Conduit Av,40.668234001699815,-73.83405799948723,good,good,good,good
+Aqueduct Racetrack,40.672096999172844,-73.83591899965162,good,good,good,good
+104 St,40.681711001091195,-73.83768300060997,good,good,good,good
+111 St,40.68433100001238,-73.83216299845388,good,good,good,good
+Ozone Park-Lefferts Blvd,40.68595099878361,-73.82579799906613,good,good,good,good
+Rockaway Blvd,40.680428999588415,-73.8438529979573,good,good,good,good
+88 St,40.67984300135503,-73.85147000026086,good,good,good,good
+80 St,40.67937100115432,-73.85899200206335,good,good,good,good
+Grant Av,40.67704400054478,-73.86504999877702,good,good,good,good
+Euclid Av,40.675376998239365,-73.87210600099675,good,good,change,run express
+Shepherd Av,40.6741300014559,-73.88074999747269,good,good,change,run express
+Van Siclen Av,40.67270999906104,-73.8903580002471,good,good,change,run express
+Liberty Av,40.67454199987086,-73.89654800103929,good,good,change,run express
+Broadway Junction,40.67833366608023,-73.90531600055341,good,good,change,run express
+Rockaway Av,40.678339999883505,-73.91194599726617,good,good,change,run express
+Ralph Av,40.678822000873375,-73.92078599933306,good,good,change,run express
+Utica Av,40.67936399950546,-73.93072899914027,good,good,change,run express
+Kingston-Throop Avs,40.67991899941601,-73.94085899871263,good,good,change,run express
+Nostrand Av,40.68043800006226,-73.95042600099683,good,good,change,run express
+Franklin Av,40.68137966658742,-73.95684800014614,good,good,change,run express
+Clinton-Washington Avs,40.68326299912644,-73.96583799857275,good,good,change,run express
+Lafayette Av,40.68611300020567,-73.97394599849406,good,good,change,run express
+Hoyt-Schermerhorn Sts,40.68840847580642,-73.98503624034139,good,good,good,good
+Jay St-MetroTech,40.692470636847084,-73.98721815267317,good,good,good,good
+High St,40.69933699977884,-73.99053100065458,good,good,good,good
+Fulton St,40.71016216530185,-74.00762309323994,good,good,good,good
+Chambers St,40.714111000774025,-74.00858473570133,good,good,good,good
+Canal St-Holland Tunnel,40.72082400007119,-74.0052290023424,good,good,good,good
+Spring St,40.72622700129312,-74.00373899843763,good,good,good,good
+W 4 St-Washington Sq (Upper),40.73233799774325,-74.00049500225435,good,good,good,good
+14 St,40.740893000193296,-74.00168999937027,good,good,good,good
+23 St,40.74590599939995,-73.99804100117201,good,good,good,good
+34 St-Penn Station,40.752287000775894,-73.99339099970578,good,good,good,good
+42 St-Port Authority Bus Term,40.757307998551504,-73.98973500085859,good,good,good,good
+50 St,40.76245599925997,-73.98598400026407,good,good,good,good
+59 St-Columbus Circle,40.768249531776064,-73.98164872301398,good,good,change,run express
+72 St,40.77551939729258,-73.976336575218,good,good,change,run express
+81 St,40.78134608418206,-73.97209794937208,good,good,change,run express
+86 St,40.78582304678557,-73.96882849429672,good,good,change,run express
+96 St,40.79161879767014,-73.96460245687166,good,good,change,run express
+103 St,40.796060739904526,-73.96137008267617,good,good,change,run express
+Cathedral Pkwy (110 St),40.800581558114956,-73.95806670661364,good,good,change,run express
+116 St,40.80505813344211,-73.95479778057312,good,good,change,run express
+125 St,40.811071672994565,-73.95224799734774,good,good,good,good
+135 St,40.817905559212676,-73.94753480879213,good,good,good,good
+145 St,40.824766360871905,-73.94408792823116,good,good,good,good
+155 St,40.83051799929251,-73.94151400082208,good,good,good,good
+163 St-Amsterdam Av,40.83601299923096,-73.93989200188344,good,good,good,good
+168 St,40.84071899990795,-73.93956099985425,Not working,no train,Not working,no train
+175 St,40.84739100072403,-73.93970399761596,Not working,no train,Not working,no train
+181 St,40.851694999744616,-73.93796900205011,Not working,no train,Not working,no train
+190 St,40.85902199892482,-73.93417999964333,Not working,no train,Not working,no train
+Dyckman St,40.865490998968916,-73.92727099960726,Not working,no train,Not working,no train
+Inwood-207 St,40.86807199999737,-73.91989900100465,good,good,good,good

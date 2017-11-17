@@ -1,0 +1,55 @@
+NAME,lang,long,top_to_bottom,reason1,bottom_to_top,reason2
+New Lots Av,40.6663149325969,-73.88411070800329,good,good,good,good
+Van Siclen Av,40.665517963059635,-73.88940491730106,good,good,good,good
+Pennsylvania Av,40.66471445143568,-73.89488591154061,good,good,good,good
+Junius St,40.66358900181724,-73.90244864183562,good,good,good,good
+Rockaway Av,40.66261748815223,-73.90895833584449,good,good,good,good
+Saratoga Av,40.6615297898075,-73.91633025007947,good,good,good,good
+Sutter Av-Rutland Road,40.66476678877493,-73.92252118536001,good,good,good,good
+Crown Hts-Utica Av,40.66897831107809,-73.93293256081851,good,good,good,good
+Kingston Av,40.66948144864978,-73.94215978392963,good,good,good,good
+Nostrand Av,40.66993815093054,-73.9504262489579,good,good,good,good
+Franklin Av,40.67076515344894,-73.9580997367769,good,good,good,good
+Eastern Pkwy-Bklyn Museum,40.67203223545925,-73.96422203748425,good,good,Not working,skip
+Grand Army Plaza,40.6752946951032,-73.9709563319228,good,good,Not working,skip
+Bergen St,40.68086213682956,-73.97499915116808,good,good,Not working,skip
+Atlantic Av-Barclay's Center,40.68442016526762,-73.97754993539385,good,good,good,good
+Nevins St,40.68831058019022,-73.98040679874578,good,good,good,good
+Borough Hall,40.692403999991036,-73.99015100090539,good,good,good,good
+Brooklyn Bridge-City Hall,40.713064999433136,-74.0041310005885,good,good,good,good
+Fulton St,40.710367998822136,-74.00950899856461,good,good,good,good
+Wall St,40.70755700086603,-74.01186199860112,good,good,good,good
+Bowling Green,40.70491399928076,-74.01400799803432,good,good,good,good
+Canal St,40.71880300107709,-74.00019299927328,good,good,good,good
+Spring St,40.72230099999366,-73.99714100006673,good,good,good,good
+Bleecker St,40.72591466682659,-73.99465900006331,good,good,good,good
+Astor Pl,40.73005400028978,-73.99106999861966,good,good,good,good
+Union Sq-14 St,40.734673000996125,-73.98995099881881,good,good,good,good
+23 St,40.739864000474604,-73.98659900207888,good,good,good,good
+28 St,40.743069999259035,-73.98426400110407,good,good,good,good
+33 St,40.74608099909145,-73.98207600148947,good,good,good,good
+Grand Central-42 St,40.75180742981634,-73.9767132992584,good,good,good,good
+51 St,40.75710699989316,-73.97192000069982,good,good,good,good
+Lexington Av-59 St,40.762526000304575,-73.9679670004732,good,good,good,good
+68 St-Hunter College,40.76814100049679,-73.96387000158042,good,good,good,good
+77 St,40.77362000074615,-73.95987399886047,good,good,good,good
+86 St,40.77949199820952,-73.95558899985132,good,good,good,good
+96 St,40.78567199998607,-73.9510700015425,good,good,good,good
+103 St,40.79060000008452,-73.94747800152219,good,good,good,good
+110 St,40.795020000113105,-73.94424999687163,good,good,good,good
+116 St,40.7986290002001,-73.9416169983714,good,good,good,good
+125 St,40.804138000587244,-73.93759400055725,good,good,good,good
+138 St-Grand Concourse,40.81322399958908,-73.92984899935611,good,good,Not working,skip
+149 St-Grand Concourse,40.81830344372315,-73.9273847542618,good,good,change,run express
+161 St-Yankee Stadium,40.82823032742169,-73.92569199505733,good,good,change,run express
+167 St,40.83553699933672,-73.92139999784426,good,good,change,run express
+170 St,40.84007499993004,-73.91779099745928,good,good,change,run express
+Mt Eden Av,40.84443400092679,-73.9146849986034,good,good,change,run express
+176 St,40.8484800012369,-73.91179399884471,good,good,change,run express
+Burnside Av,40.85345300155693,-73.9076840015997,good,good,change,run express
+183 St,40.85840700040842,-73.90387900151532,good,good,change,run express
+Fordham Rd,40.86280299988937,-73.90103399921699,good,good,change,run express
+Kingsbridge Rd,40.867760000885795,-73.89717400101743,good,good,change,run express
+Bedford Park Blvd-Lehman College,40.87341199980121,-73.89006400069478,good,good,change,run express
+Mosholu Pkwy,40.87974999947229,-73.88465499988732,good,good,change,run express
+Woodlawn,40.886037000253324,-73.87875099990931,good,good,good,good

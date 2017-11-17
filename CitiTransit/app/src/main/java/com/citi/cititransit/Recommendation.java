@@ -38,6 +38,9 @@ public class Recommendation extends AppCompatActivity {
     private static final String GOOGLE_API_KEY = "AIzaSyAd7BS-PW5TQSPMebQ5OjJbJWsRuJAYueY";
     ListView listView;
     private ArrayList<DirectionsRoute> routeArray;
+    private ArrayList<ArrayList<String>> TransitNameArray;
+    private ArrayList<ArrayList<String>> TransitStartArray ;
+    private ArrayList<ArrayList<String>> TransitEndArray;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +63,10 @@ public class Recommendation extends AppCompatActivity {
 
         ArrayList<String> costArray = new ArrayList<String>();
 
+        TransitNameArray = new ArrayList<>();
+        TransitStartArray = new ArrayList<>();
+        TransitEndArray = new ArrayList<>();
+
         routeArray=new ArrayList<DirectionsRoute>();
 
         DirectionsResult bic=getDirectionsDetails(origin,destination,TravelMode.BICYCLING);
@@ -70,6 +77,9 @@ public class Recommendation extends AppCompatActivity {
             //imageArray.add(R.drawable.ic_bicycle);
             costArray.add("free");
             routeArray.add(bic.routes[overview]);
+            TransitNameArray.add(new ArrayList<String>());
+            TransitStartArray.add(new ArrayList<String>());
+            TransitEndArray.add(new ArrayList<String>());
 
         }
         DirectionsResult walk=getDirectionsDetails(origin,destination,TravelMode.WALKING);
@@ -80,6 +90,9 @@ public class Recommendation extends AppCompatActivity {
             //imageArray.add(R.drawable.ic_walking);
             costArray.add("free");
             routeArray.add(walk.routes[overview]);
+            TransitNameArray.add(new ArrayList<String>());
+            TransitStartArray.add(new ArrayList<String>());
+            TransitEndArray.add(new ArrayList<String>());
         }
         DirectionsResult drive=getDirectionsDetails(origin,destination,TravelMode.DRIVING);
         if (drive != null) {
@@ -89,7 +102,12 @@ public class Recommendation extends AppCompatActivity {
             //imageArray.add(R.drawable.ic_driving);
             costArray.add("free");
             routeArray.add(drive.routes[overview]);
+            TransitNameArray.add(new ArrayList<String>());
+            TransitStartArray.add(new ArrayList<String>());
+            TransitEndArray.add(new ArrayList<String>());
         }
+        //origin="40.6088428089499,-73.9730028152875";
+        //destination="40.644272,-73.97972116";
 
         DirectionsResult transit=getDirectionsDetails(origin,destination,TravelMode.TRANSIT);
         if (transit != null) {
@@ -99,12 +117,19 @@ public class Recommendation extends AppCompatActivity {
                 nameArray.add("Transit");
                 String transitLines = "";
                 DirectionsLeg[] legs = transit.routes[routeInd].legs;
+                ArrayList<String> TransitLineName= new ArrayList<>();
+                ArrayList<String> TransitStartStop= new ArrayList<>();
+                ArrayList<String> TransitEndStop= new ArrayList<>();
 
                 for (int i = 0; i < legs.length; i++) {
                     DirectionsStep[] steps = legs[i].steps;
                     for (int j = 0; j < steps.length; j++) {
-                        if (steps[j].travelMode == TravelMode.TRANSIT)
+                        if (steps[j].travelMode == TravelMode.TRANSIT) {
                             transitLines += steps[j].transitDetails.line.shortName;
+                            TransitLineName.add(steps[j].transitDetails.line.shortName);
+                            TransitStartStop.add(steps[j].transitDetails.departureStop.name);
+                            TransitEndStop.add(steps[j].transitDetails.arrivalStop.name);
+                        }
                         if (steps[j].travelMode != TravelMode.TRANSIT)
                             transitLines += steps[j].travelMode.toString();
                         if (j < steps.length - 1)
@@ -112,15 +137,19 @@ public class Recommendation extends AppCompatActivity {
                     }
                 }
                 infoArray.add(transitLines);
-                infoArray.add(drive.routes[overview].legs[overview].duration.humanReadable);
-                //imageArray.add(R.drawable.ic_driving);
-                costArray.add("free");
+                //infoArray.add(drive.routes[overview].legs[overview].duration.humanReadable);
+                imageArray.add(R.drawable.ic_driving);
+                costArray.add("$2.65");
+                TransitNameArray.add(TransitLineName);
+                TransitStartArray.add(TransitStartStop);
+                TransitEndArray.add(TransitEndStop);
+
                 routeArray.add(routes[routeInd]);
             }
         }
 
         RecomendationRowAdapter whatever = new RecomendationRowAdapter(this, nameArray, infoArray, costArray, imageArray);
-        listView = (ListView) findViewById(R.id.listviewID);
+        listView = findViewById(R.id.listviewID);
         listView.setAdapter(whatever);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -128,8 +157,9 @@ public class Recommendation extends AppCompatActivity {
                                     long id) {
                 Intent intent = new Intent(Recommendation.this, RouteChoices.class);
                 intent.putExtra("parcel_data", routeArray.get(position));
-               // intent.putExtra("Commute_history", );
-                //intent.setPackage("com.google.android.apps.maps");
+                intent.putExtra("TransitLineName",TransitNameArray.get(position));
+                intent.putExtra("TransitStartStop",TransitStartArray.get(position));
+                intent.putExtra("TransitEndStop",TransitEndArray.get(position));
                 startActivity(intent);
             }
         });

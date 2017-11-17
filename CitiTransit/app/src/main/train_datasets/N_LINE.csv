@@ -1,0 +1,42 @@
+NAME,lang,long,top_to_bottom,reason1,bottom_to_top,reason2
+Astoria-Ditmars Blvd,40.775035666523664,-73.9120340001031,good,good,good,good
+Astoria Blvd,40.77003699949086,-73.91809500109238,good,good,good,good
+30 Av,40.76677866673298,-73.9214790001739,Not working,close for innovation,Not working,close for innovation
+Broadway,40.761431998800546,-73.92582299919906,good,good,Not working,skip
+36 Av,40.7564420005104,-73.929861999118,Not working,close for innovation,Not working,close for innovation
+39 Av,40.75276306140845,-73.93285137679598,good,good,Not working,skip
+Queensboro Plz,40.750635651014804,-73.9401635351909,good,good,good,good
+Lexington Av-59 St,40.762708855394564,-73.96737501711436,good,good,good,good
+5 Av-59 St,40.764810999755284,-73.97334700047045,good,good,good,good
+57 St,40.76456552501829,-73.98072973372128,good,good,good,good
+49 St,40.759801973870694,-73.98420956591096,good,good,good,good
+Times Sq-42 St,40.75461199851542,-73.98676800153976,good,good,good,good
+Herald Sq-34 St,40.74964456009442,-73.9879368338264,good,good,good,good
+28 St,40.74545399979951,-73.98869800128737,good,good,good,good
+23 St,40.74130266729,-73.98934400102907,good,good,good,good
+Union Sq-14 St,40.73587226699812,-73.99053886181645,good,good,good,good
+8 St-NYU,40.73046499853991,-73.99250799849149,good,good,good,good
+Prince St,40.72432866597571,-73.99770200045987,good,good,good,good
+Canal St,40.718814263587134,-74.00105471306033,good,good,good,good
+Court St,40.694196480776995,-73.99181830901125,good,good,good,good
+Jay St-MetroTech,40.69225539645323,-73.98605667854612,good,good,good,good
+DeKalb Av,40.690648119969794,-73.98177094440949,good,good,good,good
+Atlantic Av-Barclay's Center,40.683665667279435,-73.97880999956767,good,good,good,good
+Union St,40.67731566735096,-73.98310999909673,good,good,good,good
+4 Av-9 St,40.670846666842756,-73.98830199974512,good,good,good,good
+Prospect Av,40.66541366712979,-73.99287200067424,good,good,good,good
+25 St,40.66039666692321,-73.99809099974297,good,good,good,good
+36 St,40.65514366633887,-74.00354899951809,good,good,good,good
+45 St,40.648938666612814,-74.01000600074939,good,good,good,good
+53 St,40.64506866735981,-74.01403399986317,good,good,good,good
+59 St,40.6413616662838,-74.01788099953987,good,good,good,good
+8 Av,40.634970999647166,-74.01151599772157,good,good,good,good
+Ft Hamilton Pkwy,40.63138566722445,-74.00535100046275,good,good,Not working,platform closed
+New Utrecht Av,40.62484166725887,-73.99635300025969,good,good,Not working,platform closed
+18 Av,40.620686997680025,-73.99045399865993,good,good,Not working,platform closed
+20 Av,40.617108999866005,-73.98452199846113,good,good,Not working,platform closed
+Bay Pkwy,40.61145578989005,-73.98178001069293,good,good,good,good
+Kings Hwy,40.60405899980493,-73.98037300229343,good,good,Not working,platform closed
+Avenue U,40.597235999920436,-73.97908400099428,good,good,Not working,platform closed
+Gravesend-86 St,40.59246500088859,-73.97818899936274,good,good,Not working,platform closed
+Coney Island-Stillwell Av,40.57728100006751,-73.9812359981396,good,good,good,good
