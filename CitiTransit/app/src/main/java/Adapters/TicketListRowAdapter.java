@@ -47,10 +47,10 @@ public class TicketListRowAdapter extends ArrayAdapter<Ticket>{
             if(thumbnail != null){
                 switch(ticketType.getText().toString()){
                     case "Subway":
-                        thumbnail.setImageResource(R.drawable.subway);
+                        thumbnail.setImageResource(R.drawable.ic_003_public_transport_subway);
                         break;
                     case "CitiBike":
-                        thumbnail.setImageResource(R.drawable.citibike);
+                        thumbnail.setImageResource(R.drawable.ic_002_bike);
                         break;
 
                 }

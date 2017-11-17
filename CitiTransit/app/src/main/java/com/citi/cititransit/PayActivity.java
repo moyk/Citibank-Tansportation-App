@@ -105,9 +105,10 @@ public class PayActivity extends AppCompatActivity implements MasterpassInitCall
                case "BUS": testList.add(new Ticket("Bus", 2.75));
            }
         }
-
+        testList.add(new Ticket("CitiBike", 12.00));
         TicketListRowAdapter ticketsAdapter = new TicketListRowAdapter(this, R.layout.ticketlist_row, testList);
         ListView ticketsList = (ListView)findViewById(R.id.ticketList);
+
         ticketsList.setAdapter(ticketsAdapter);
 
         //Calculate the subtotal of all tickets
