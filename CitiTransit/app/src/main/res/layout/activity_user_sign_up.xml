@@ -69,6 +69,15 @@
             android:shadowColor="@color/grey"/>
 
 
+        <TextView
+            android:text="@string/old_user_sign_in"
+            android:id="@+id/oldUserSignIn"
+            android:textAlignment="center"
+            android:layout_marginLeft="54dp"
+            android:layout_marginRight="54dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
     </LinearLayout>
 
 </RelativeLayout>

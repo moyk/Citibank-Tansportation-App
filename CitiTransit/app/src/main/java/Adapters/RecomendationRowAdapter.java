@@ -57,7 +57,7 @@ public class RecomendationRowAdapter extends ArrayAdapter{
         nameTextField.setText(nameArray.get(position));
         infoTextField.setText(infoArray.get(position));
         costTextField.setText(costArray.get(position));
-        imageView.setImageResource(imageIDarray.get(position));
+//        imageView.setImageResource(imageIDarray.get(position));
 
         return rowView;
 

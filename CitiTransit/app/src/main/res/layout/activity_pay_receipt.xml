@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.citi.cititransit.PayReceiptActivity">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:id="@+id/successCheckMakr"
+            android:layout_marginTop="150dp"
+            android:background="@drawable/ic_green_check"
+            android:scaleType="centerCrop"
+            android:layout_centerHorizontal="true"/>
+
+        <TextView
+            android:id="@+id/successfulText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/success_pay_text"
+            android:layout_centerHorizontal="true"
+            android:textSize="20dp"
+            android:layout_below="@+id/successCheckMakr"
+            android:layout_marginTop="15dp"/>
+
+        <Button
+            android:id="@+id/paymentFinishButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Done"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/successfulText"
+            android:layout_marginTop="50dp"/>
+</RelativeLayout>

@@ -71,21 +71,13 @@
 
         <TextView
             android:text="@string/new_user_guide"
+            android:textColor="@color/white"
+            android:textSize="15dp"
             android:id="@+id/newUserSignUp"
             android:textAlignment="center"
             android:layout_margin="0dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-
-
-
-        <!--&lt;!&ndash;&ndash;&gt;<&#45;&#45;<com.google.android.gms.common.SignInButton&ndash;&gt;-->
-            <!--android:id="@+id/google_sign_in_button"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_marginLeft="50dp"-->
-            <!--android:layout_marginRight="50dp"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_gravity="center"/>-->
 
     </LinearLayout>
 

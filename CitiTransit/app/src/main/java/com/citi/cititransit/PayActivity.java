@@ -1,12 +1,17 @@
 package com.citi.cititransit;
 
+import android.app.ProgressDialog;
+import android.content.Intent;
 import android.location.Address;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
 import android.util.Log;
 
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -42,13 +47,32 @@ import Modules.Ticket;
 
 public class PayActivity extends AppCompatActivity implements MasterpassInitCallback,
         MasterpassCheckoutCallback{
+
+    private ProgressDialog payProgress;
+    private Button payButton;
+    private int progressStatus;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pay);
 
+        payProgress = new ProgressDialog(this);
+        payButton = (Button)findViewById(R.id.payConfirmButton);
+
+        //TODO: need receive UserCommuteHistory Obj
         //Create the ListView for the transportation tickets
         List<Ticket> testList = new ArrayList<>();
+        Intent tickets = getIntent();
+//        List<String> transportations = (List<String>)tickets.getSerializableExtra("");
+//        for(String trans : transportations){
+//           switch(trans){
+//               case "Subway": testList.add(new Ticket(trans, 2.75));
+//                   break;
+//               case "CitiBike":  testList.add(new Ticket(trans, 3.00));
+//                   break;
+//           }
+//        }
         testList.add(new Ticket("Subway", 2.75));
         testList.add(new Ticket("CitiBike", 3.00));
 
@@ -67,22 +91,55 @@ public class PayActivity extends AppCompatActivity implements MasterpassInitCall
         TextView ticketTotal = (TextView)findViewById(R.id.total);
         ticketTotal.setText(Double.toString(subTotal));
 
-        String signature = "LOCAL_TESTING";  // will be provided by Masterpass, use "LOCAL_TESTING" to test integration
 
-        MasterpassMerchantConfiguration sampleConfig = new MasterpassMerchantConfiguration.Builder()
-                .setContext(this.getApplicationContext())                       // context
-                .setEnvironment(MasterpassMerchantConfiguration.SANDBOX)        // environment
-                .setLocale(new Locale("en-US"))                                 // locale
-                .setAnalyticsEnabled(false)                                     // analytics on / off
-                .setSignature(signature)                                        // will be provided by Masterpass
-                .build();
+        payButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                payProgress.setTitle("CitiGo");
+                payProgress.setMessage("Signing in...");
+                payProgress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                payProgress.setProgress(0);
+                payProgress.show();
+                progressStatus = 0;
 
-        try {
-            MasterpassMerchant.initialize(sampleConfig, this);
-        } catch (IllegalStateException e) {
-            // in case SDK already initialized
-            this.onInitSuccess();
-        }
+                Runnable runnable = new Runnable() {
+                    @Override
+                    public void run() {
+                        while(progressStatus < 100){
+                            try{
+                                Thread.sleep(20);
+                                progressStatus += 2;
+                                payProgress.setProgress(progressStatus);
+                            }catch(InterruptedException e){
+                                e.printStackTrace();
+                            }
+
+                        }
+                        payProgress.dismiss();
+                    }
+                };
+                Thread thread = new Thread(runnable);
+                thread.start();
+                Intent intent = new Intent(PayActivity.this, PayReceiptActivity.class);
+                startActivity(intent);
+            }
+        });
+//        String signature = "LOCAL_TESTING";  // will be provided by Masterpass, use "LOCAL_TESTING" to test integration
+//
+//        MasterpassMerchantConfiguration sampleConfig = new MasterpassMerchantConfiguration.Builder()
+//                .setContext(this.getApplicationContext())                       // context
+//                .setEnvironment(MasterpassMerchantConfiguration.SANDBOX)        // environment
+//                .setLocale(new Locale("en-US"))                                 // locale
+//                .setAnalyticsEnabled(false)                                     // analytics on / off
+//                .setSignature(signature)                                        // will be provided by Masterpass
+//                .build();
+//
+//        try {
+//            MasterpassMerchant.initialize(sampleConfig, this);
+//        } catch (IllegalStateException e) {
+//            // in case SDK already initialized
+//            this.onInitSuccess();
+//        }
 
 
     }

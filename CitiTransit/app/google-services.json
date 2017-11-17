@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "727411656086-598fm0p0lbqmvnhq520g6fklrau467ui.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.citi.cititransit",
+            "certificate_hash": "969f974d73eea3db53c8d416fadc8b01b55ba9da"
+          }
+        },
+        {
           "client_id": "727411656086-38dvgl2dvuq25svo4evud7ero3ees6ts.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,8 +37,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "727411656086-38dvgl2dvuq25svo4evud7ero3ees6ts.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2

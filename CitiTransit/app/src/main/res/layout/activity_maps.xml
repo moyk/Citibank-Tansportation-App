@@ -78,7 +78,7 @@
             </LinearLayout>
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/addRegularRouteButton"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_alignEnd="@+id/searchButton"

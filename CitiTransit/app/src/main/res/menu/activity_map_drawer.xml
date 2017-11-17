@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_camera"
+            android:title="Profile" />
+        <item
+            android:id="@+id/nav_gallery"
+            android:title="Commute History" />
+    </group>
+
+    <item android:title="Others">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:title="About Us" />
+            <item
+                android:id="@+id/nav_send"
+                android:title="Privacy" />
+        </menu>
+    </item>
+
+</menu>

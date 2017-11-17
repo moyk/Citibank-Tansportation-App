@@ -1,10 +1,12 @@
 package Modules;
 
+import java.io.Serializable;
+
 /**
  * Created by yianmo on 10/13/17.
  */
 
-public class Ticket {
+public class Ticket implements Serializable{
 
     private String ticketType;
 

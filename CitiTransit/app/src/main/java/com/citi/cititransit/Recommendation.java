@@ -39,12 +39,10 @@ public class Recommendation extends AppCompatActivity {
     ListView listView;
     private ArrayList<DirectionsRoute> routeArray;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.route_recommendation);
-
 
         Bundle bundle = getIntent().getExtras();
         String destination = bundle.getString("destination");
@@ -69,7 +67,7 @@ public class Recommendation extends AppCompatActivity {
             Log.i("test", bic.routes[overview].legs[overview].duration.humanReadable);
             nameArray.add("Bicycle");
             infoArray.add(bic.routes[overview].legs[overview].duration.humanReadable);
-            imageArray.add(R.drawable.ic_bicycle);
+            //imageArray.add(R.drawable.ic_bicycle);
             costArray.add("free");
             routeArray.add(bic.routes[overview]);
 
@@ -79,7 +77,7 @@ public class Recommendation extends AppCompatActivity {
             Log.i("test", walk.routes[overview].legs[overview].duration.humanReadable);
             nameArray.add("Walking");
             infoArray.add(walk.routes[overview].legs[overview].duration.humanReadable);
-            imageArray.add(R.drawable.ic_walking);
+            //imageArray.add(R.drawable.ic_walking);
             costArray.add("free");
             routeArray.add(walk.routes[overview]);
         }
@@ -88,7 +86,7 @@ public class Recommendation extends AppCompatActivity {
             Log.i("test", drive.routes[overview].legs[overview].duration.humanReadable);
             nameArray.add("Driving");
             infoArray.add(drive.routes[overview].legs[overview].duration.humanReadable);
-            imageArray.add(R.drawable.ic_driving);
+            //imageArray.add(R.drawable.ic_driving);
             costArray.add("free");
             routeArray.add(drive.routes[overview]);
         }
@@ -114,8 +112,8 @@ public class Recommendation extends AppCompatActivity {
                     }
                 }
                 infoArray.add(transitLines);
-                //infoArray.add(drive.routes[overview].legs[overview].duration.humanReadable);
-                imageArray.add(R.drawable.ic_driving);
+                infoArray.add(drive.routes[overview].legs[overview].duration.humanReadable);
+                //imageArray.add(R.drawable.ic_driving);
                 costArray.add("free");
                 routeArray.add(routes[routeInd]);
             }
@@ -130,13 +128,11 @@ public class Recommendation extends AppCompatActivity {
                                     long id) {
                 Intent intent = new Intent(Recommendation.this, RouteChoices.class);
                 intent.putExtra("parcel_data", routeArray.get(position));
+               // intent.putExtra("Commute_history", );
                 //intent.setPackage("com.google.android.apps.maps");
                 startActivity(intent);
-
             }
         });
-
-
     }
 
 
