@@ -40,14 +40,14 @@
             android:name=".Recommendation"
             android:label="Recommend" />
         <activity
-            android:name=".MapsActivity"
-            android:label="Map" />
+            android:name=".UserSignInActivity"
+            android:label="CitiGo" />
         <activity
             android:name=".UserSignUpActivity"
             android:label="Sign Up" />
         <activity
-            android:name=".UserSignInActivity"
-            android:label="CitiGo">
+            android:name=".MapsActivity"
+            android:label="Map">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -1,0 +1,24 @@
+NAME,lang,long,top_to_bottom,reason1,bottom_to_top,reason2
+Whitehall St,40.703142373599135,-74.0130072374272,good,good,good,good
+Rector St,40.707744756294474,-74.01297456253795,good,good,good,good
+Cortlandt St,40.7105129841524,-74.01113196473266,good,good,good,good
+City Hall,40.71327233111697,-74.00698581780337,good,good,good,good
+Canal St,40.71946500105898,-74.0018260000577,good,good,good,good
+Prince St,40.72432866597571,-73.99770200045987,good,good,good,good
+8 St-NYU,40.73046499853991,-73.99250799849149,good,good,good,good
+Union Sq-14 St,40.73587226699812,-73.99053886181645,good,good,good,good
+23 St,40.74130266729,-73.98934400102907,good,good,good,good
+28 St,40.74545399979951,-73.98869800128737,good,good,good,good
+Herald Sq-34 St,40.74964456009442,-73.9879368338264,good,good,good,good
+Times Sq-42 St,40.75461199851542,-73.98676800153976,good,good,good,good
+49 St,40.759801973870694,-73.98420956591096,good,good,good,good
+57 St,40.76456552501829,-73.98072973372128,good,good,good,good
+5 Av-59 St,40.764810999755284,-73.97334700047045,good,good,good,good
+Lexington Av-59 St,40.762708855394564,-73.96737501711436,good,good,good,good
+Queensboro Plz,40.750635651014804,-73.9401635351909,good,good,good,good
+39 Av,40.75276306140845,-73.93285137679598,good,good,good,good
+36 Av,40.7564420005104,-73.929861999118,Not working,close for innovation,Not working,close for innovation
+Broadway,40.761431998800546,-73.92582299919906,good,good,good,good
+30 Av,40.76677866673298,-73.9214790001739,Not working,close for innovation,Not working,close for innovation
+Astoria Blvd,40.77003699949086,-73.91809500109238,good,good,good,good
+Astoria-Ditmars Blvd,40.775035666523664,-73.9120340001031,good,good,good,good

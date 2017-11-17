@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -35,9 +34,9 @@ import com.google.maps.model.DirectionsStep;
 import com.google.maps.model.TravelMode;
 
 import org.joda.time.DateTime;
+
 import java.io.IOException;
 import java.io.InputStream;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -65,6 +64,7 @@ public class RouteChoices extends AppCompatActivity implements OnMapReadyCallbac
     private String origin;
     private String destination;
     private ArrayList<String> commuteModes;
+    private DirectionsResult brokentransit=new DirectionsResult();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -128,16 +128,19 @@ public class RouteChoices extends AppCompatActivity implements OnMapReadyCallbac
 
     }
 
-    public void checkService(GoogleMap mMap){
+    public int checkService(GoogleMap mMap){
+        int res=0;
         if (TransitLineName!=null) {
             for (int i=0; i<TransitLineName.size(); i++)
-                Log.i("test", "transitline has " + TransitLineName.get(i));
+                Log.i("test", "check services now... for line " + TransitLineName.get(i));
             for (int i = 0; i < TransitLineName.size(); i++) {
-                InputStream inputStream=getResources().openRawResource(R.raw.f_line);
+                String f="f";
+                InputStream inputStream=getResources().openRawResource(getResources().getIdentifier("line_"+ TransitLineName.get(i).toLowerCase(), "raw", getPackageName()));
                 Log.i("test", TransitStartStop.get(i) + " to " + TransitEndStop.get(i));
                 checkService a = new checkService(TransitLineName.get(i), TransitStartStop.get(i), TransitEndStop.get(i), inputStream);
                 reslist = a.getReslist();
                 if (reslist != null) {
+                    res=1;
                     Log.i("test","we are getting the result"+Integer.toString(reslist.size()));
                     for (int j = 0; i < reslist.size(); i += 2) {
                         ArrayList<String> startpoint = reslist.get(j);
@@ -151,21 +154,23 @@ public class RouteChoices extends AppCompatActivity implements OnMapReadyCallbac
 
                         //mMap.addPolyline(new PolylineOptions().color(Color.BLACK).width(20).addAll(newlist));
 
-                        DirectionsResult transit=getDirectionsDetails(startpoint.get(0)+","+startpoint.get(1) ,endpoint.get(0)+","+ endpoint.get(1) ,TravelMode.TRANSIT);
-                        List<LatLng> changepath = PolyUtil.decode(transit.routes[0].overviewPolyline.getEncodedPath());
+                        brokentransit=getDirectionsDetails(startpoint.get(0)+","+startpoint.get(1) ,endpoint.get(0)+","+ endpoint.get(1) ,TravelMode.TRANSIT);
+                        List<LatLng> changepath = PolyUtil.decode(brokentransit.routes[0].overviewPolyline.getEncodedPath());
                         int mid=changepath.size()/2;
-                        if (changepath!=null)
-                            Log.i("test","yes we are calling api again");
-                        mMap.addPolyline(new PolylineOptions().color(getResources().getColor(R.color.draworange)).width(10).addAll(changepath));
-                        mMap.addMarker(new MarkerOptions()
-                                .position(changepath.get(mid))
-                                .title("Caution!")
-                                .snippet("This part is not working")
-                                .icon(bitmapDescriptorFromVector(this,R.drawable.ic_warning)));
+                        if (changepath!=null) {
+                            Log.i("test", "yes we are calling api again");
+                            mMap.addPolyline(new PolylineOptions().color(getResources().getColor(R.color.drawgrey)).width(23).addAll(changepath));
+                            mMap.addMarker(new MarkerOptions()
+                                    .position(changepath.get(mid))
+                                    .title("Caution!")
+                                    .snippet("This part is not working")
+                                    .icon(bitmapDescriptorFromVector(this, R.drawable.ic_warning)));
+                        }
                     }
                 }
             }
         }
+        return res;
     }
 
     private BitmapDescriptor bitmapDescriptorFromVector(Context context, int vectorResId) {
@@ -183,6 +188,8 @@ public class RouteChoices extends AppCompatActivity implements OnMapReadyCallbac
         if (route != null) {
             addPolyline(googleMap);
             positionCamera(route, googleMap);
+            if (brokentransit.routes!=null)
+                positionCamera(brokentransit.routes[0], googleMap);
             addMarkersToMap(googleMap);
         }
     }
@@ -206,12 +213,21 @@ public class RouteChoices extends AppCompatActivity implements OnMapReadyCallbac
         //String[] endlat=destination.split(",");
         //LatLng originpoint= new LatLng(Double.parseDouble(originlat[0]), Double.parseDouble(originlat[1]));
         //LatLng endpoint= new LatLng(Double.parseDouble(endlat[0]), Double.parseDouble(endlat[1]));
-        //mMap.addMarker(new MarkerOptions().position(originpoint).title(route.legs[overview].startAddress));
+        mMap.addMarker(new MarkerOptions().position(new LatLng(route.legs[0].startLocation.lat, route.legs[0].startLocation.lng)).title(route.legs[overview].startAddress));
+        mMap.addMarker(new MarkerOptions().position(new LatLng(route.legs[0].endLocation.lat, route.legs[0].endLocation.lng)).title(route.legs[overview].endAddress));
         //mMap.addMarker(new MarkerOptions().position(endpoint).title(route.legs[overview].endAddress));
+        /*mMap.addMarker(new MarkerOptions()
+                .position(new LatLng(route.legs[0].startLocation.lat, route.legs[0].startLocation.lng))
+                .icon(bitmapDescriptorFromVector(this, R.drawable.ic_circleoutline)));
+
+        mMap.addMarker(new MarkerOptions()
+                .position(new LatLng(route.legs[0].endLocation.lat, route.legs[0].endLocation.lng))
+                .icon(bitmapDescriptorFromVector(this, R.drawable.ic_circleoutline)));*/
     }
 
     private void positionCamera(DirectionsRoute route, GoogleMap mMap) {
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(route.legs[overview].startLocation.lat, route.legs[overview].startLocation.lng), 15));
+
     }
 
     private void addPolyline(GoogleMap mMap) {
@@ -232,15 +248,15 @@ public class RouteChoices extends AppCompatActivity implements OnMapReadyCallbac
             }
         }
 
-        mMap.addPolyline(new PolylineOptions().color(R.color.draworange).width(10).addAll(decodedPath));
-        //checkService(mMap);
-        int size=decodedPath.size();
+        mMap.addPolyline(new PolylineOptions().color(getResources().getColor(R.color.draworange)).width(17).addAll(decodedPath));
+        checkService(mMap);
+/*        int size=decodedPath.size();
         List<LatLng> hardcode= new ArrayList<>();
         int i;
-        for (i=size-1; i>size-1-15;i--)
+        for (i=size-1-5; i>size-1-20;i--)
             hardcode.add(decodedPath.get(i));
         int mid=hardcode.size()/2;
-        mMap.addPolyline(new PolylineOptions().color(getResources().getColor(R.color.draworange)).width(10).addAll(hardcode));
+        mMap.addPolyline(new PolylineOptions().color(getResources().getColor(android.R.color.holo_red_light)).width(10).addAll(hardcode));
         mMap.addMarker(new MarkerOptions()
                 .position(hardcode.get(mid))
                 .title("Warning!")
@@ -251,19 +267,20 @@ public class RouteChoices extends AppCompatActivity implements OnMapReadyCallbac
         if (bike!=null) {
             Log.i("test", "yes, it is not empty");
             List<LatLng> bikepath = PolyUtil.decode(bike.routes[0].overviewPolyline.getEncodedPath());
+            mid=bikepath.size()/2;
             mMap.addMarker(new MarkerOptions()
-                    .position(bikepath.get(bikepath.size() / 2+8))
+                    .position(bikepath.get(mid))
                     .title("Electrical Issues Causing Delay")
                     .snippet("Save 15 minutes, take Citibike!")
                     .icon(bitmapDescriptorFromVector(this, R.drawable.ic_002_bike)));
             mMap.addPolyline(new PolylineOptions().color(Color.BLUE).width(10).addAll(bikepath));
-        }
+        }*/
 
     }
 
-    private String getEndLocationTitle(DirectionsRoute route){
+ /*   private String getEndLocationTitle(DirectionsRoute route){
         return  "Time :"+ route.legs[overview].duration.humanReadable + " Distance :" + route.legs[overview].distance.humanReadable;
-    }
+    }*/
 
     private DirectionsResult getDirectionsDetails(String origin, String destination, TravelMode mode) {
         DateTime now = new DateTime();

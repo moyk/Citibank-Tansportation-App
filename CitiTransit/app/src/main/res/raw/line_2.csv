@@ -1,0 +1,62 @@
+NAME,lang,long,top_to_bottom,reason1,bottom_to_top,reason2
+Brooklyn College-Flatbush Av,40.63284240700742,-73.94754120734406,good,good,good,good
+Newkirk Av,40.63999124275311,-73.94829990822407,good,good,good,good
+Beverly Rd,40.64512351894373,-73.94884798381702,good,good,good,good
+Church Av,40.6508606878022,-73.94945514035334,good,good,good,good
+Winthrop St,40.65665931376077,-73.95007934590994,good,good,good,good
+Sterling St,40.6627729934283,-73.95072891124937,good,good,good,good
+President St,40.667883603536815,-73.95058920022207,good,good,good,good
+Franklin Av,40.67076515344894,-73.9580997367769,good,good,good,good
+Eastern Pkwy-Bklyn Museum,40.67203223545925,-73.96422203748425,good,good,Not working,skip
+Grand Army Plaza,40.6752946951032,-73.9709563319228,good,good,Not working,skip
+Bergen St,40.68086213682956,-73.97499915116808,good,good,Not working,skip
+Atlantic Av-Barclay's Center,40.68442016526762,-73.97754993539385,good,good,good,good
+Nevins St,40.68831058019022,-73.98040679874578,good,good,good,good
+Hoyt St,40.69054418535472,-73.98506379575646,good,good,good,good
+Borough Hall,40.693218999611084,-73.98999799960687,good,good,good,good
+Clark St,40.69746599996469,-73.99308599821961,good,good,good,good
+Fulton St,40.70941599925865,-74.00657099970202,good,good,good,good
+Wall St,40.706820999753376,-74.00909999844257,good,good,good,good
+Park Pl,40.713050999077694,-74.00881099997359,good,good,good,good
+Chambers St,40.71547800011327,-74.00926600170112,good,good,change,run local
+Franklin St,40.719318001302135,-74.00688600277107,good,good,change,run local
+Canal St,40.72285399778783,-74.0062770001748,good,good,change,run local
+Houston St,40.728251000730204,-74.00536700180581,good,good,change,run local
+Christopher St-Sheridan Sq,40.73342200104225,-74.00290599855235,good,good,change,run local
+14 St,40.737825999728116,-74.00020100063497,good,good,change,run local
+18 St,40.741039999802105,-73.99787100060406,good,good,change,run local
+23 St,40.74408099989751,-73.9956570016487,good,good,change,run local
+28 St,40.74721499918219,-73.99336500134324,good,good,change,run local
+34 St-Penn Station,40.75037300003949,-73.99105699913983,good,good,change,run local
+Times Sq-42 St,40.75528999995681,-73.98749500051885,good,good,change,run local
+50 St,40.76172799961419,-73.98384899986625,good,good,change,run local
+59 St-Columbus Circle,40.76824700063689,-73.98192900232715,good,good,change,run local
+66 St-Lincoln Ctr,40.77344000052039,-73.98220899995783,good,good,change,run local
+72 St,40.77845300068614,-73.98197000159583,good,good,change,run local
+79 St,40.78393399959032,-73.97991700056134,good,good,change,run local
+86 St,40.78864400073892,-73.97621799859327,good,good,change,run local
+96 St,40.79391900121471,-73.97232299915696,good,good,good,good
+Central Park North (110 St),40.79907499977324,-73.95182200176913,good,good,good,good
+116 St,40.802097999133004,-73.94962500096905,good,good,good,good
+125 St,40.807753999182815,-73.94549500011411,good,good,good,good
+135 St,40.8142290003391,-73.94077000106708,good,good,good,good
+149 St-Grand Concourse,40.81833014409742,-73.92672247438611,good,good,good,good
+3 Av-149 St,40.816029252510006,-73.91779152760981,good,good,good,good
+Jackson Av,40.81643746686396,-73.9077019387083,good,good,good,good
+Prospect Av,40.81948726483844,-73.90177778730917,good,good,good,good
+Intervale Av,40.822142131170786,-73.89661738461646,good,good,good,good
+Simpson St,40.823976841237396,-73.89306639507903,good,good,good,good
+Freeman St,40.829987446384116,-73.89175225349464,good,good,good,good
+174 St,40.837195550170605,-73.88769359812888,good,good,good,good
+West Farms Sq-E Tremont Av,40.84020763241799,-73.87996127877184,good,good,good,good
+E 180 St,40.8418630412186,-73.87334609510884,good,good,good,good
+Bronx Park East,40.848768666338934,-73.86835609178098,good,good,good,good
+Pelham Pkwy,40.8571924091606,-73.86748067850041,good,good,good,good
+Allerton Av,40.86548337793927,-73.86723422851625,good,good,good,good
+Burke Av,40.87125880254771,-73.86705361747603,good,good,good,good
+Gun Hill Rd,40.877839385172024,-73.86613410538703,good,good,good,good
+219 St,40.883887974625274,-73.8625097078866,good,good,good,good
+225 St,40.88802825863786,-73.86021461772737,good,good,good,good
+233 St,40.89314324138378,-73.85736239521543,good,good,good,good
+Nereid Av (238 St),40.898286515575286,-73.8543153107622,good,good,good,good
+Wakefield-241 St,40.903125000541245,-73.8506199987954,good,good,good,good

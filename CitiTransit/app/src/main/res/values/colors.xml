@@ -5,8 +5,10 @@
     <color name="colorAccent">#FF4081</color>
     <color name="white">#FEFEFE</color>
     <color name="grey">#9E9E9E</color>
-    <color name="draworange">#F78842</color>
+    <color name="draworange">#FF8330</color>
     <color name="drawblue">#70d893</color>
+    <color name="drawgrey">#79797a</color>
+
 
 
 </resources>
