@@ -17,6 +17,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.mastercard.mp.checkout.Amount;
 import com.mastercard.mp.checkout.CheckoutResponseConstants;
 import com.mastercard.mp.checkout.CheckoutSummaryItem;
@@ -33,13 +34,16 @@ import com.mastercard.mp.checkout.ShippingSummaryItem;
 import com.mastercard.mp.checkout.Tokenization;
 
 import java.io.UnsupportedEncodingException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Currency;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
 import Adapters.TicketListRowAdapter;
 import Modules.Ticket;
+import Modules.UserCommuteHistory;
 
 /**
  * Created by nick on 10/13/17.
@@ -51,7 +55,11 @@ public class PayActivity extends AppCompatActivity implements MasterpassInitCall
     private ProgressDialog payProgress;
     private Button payButton;
     private int progressStatus;
-
+    private String origin;
+    private String destination;
+    private ArrayList<String> modes;
+    private FirebaseAuth mAuth;
+    private UserCommuteHistory curRoute;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,22 +67,44 @@ public class PayActivity extends AppCompatActivity implements MasterpassInitCall
 
         payProgress = new ProgressDialog(this);
         payButton = (Button)findViewById(R.id.payConfirmButton);
+        mAuth = FirebaseAuth.getInstance();
+        curRoute = new UserCommuteHistory();
 
         //TODO: need receive UserCommuteHistory Obj
+        Intent bundle = getIntent();
+        origin = (String)bundle.getSerializableExtra("start");
+        destination = (String)bundle.getSerializableExtra("end");
+        modes = (ArrayList<String>) bundle.getSerializableExtra("modes");
+        Log.d("test/PayActivity", origin);
+        Log.d("test/PayActivity", destination);
+        Log.d("test/PayActivity", modes.toString());
+
+
+        curRoute.setStartPoint(origin);
+        curRoute.setDestination(destination);
+        curRoute.setTransitModes(modes);
+        curRoute.setFirebaseUserId(mAuth.getCurrentUser().getUid());
+        Date curDate = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+        SimpleDateFormat idComponent = new SimpleDateFormat("MM/dd/yyyy:hh:mm:ss");
+        String formattedDate = sdf.format(curDate);
+        curRoute.setTimeStamp(formattedDate);
+        curRoute.setFirebaseUserId(mAuth.getCurrentUser().getUid());
+        curRoute.setCommuteHistoryId(mAuth.getCurrentUser().getUid() + idComponent.format(curDate));
+        Log.d("test/PayActivity", "primary key: " + curRoute.getCommuteHistoryId());
         //Create the ListView for the transportation tickets
         List<Ticket> testList = new ArrayList<>();
         Intent tickets = getIntent();
-//        List<String> transportations = (List<String>)tickets.getSerializableExtra("");
-//        for(String trans : transportations){
-//           switch(trans){
-//               case "Subway": testList.add(new Ticket(trans, 2.75));
-//                   break;
-//               case "CitiBike":  testList.add(new Ticket(trans, 3.00));
-//                   break;
-//           }
-//        }
-        testList.add(new Ticket("Subway", 2.75));
-        testList.add(new Ticket("CitiBike", 3.00));
+
+        for(String mode : curRoute.getTransitModes()){
+           switch(mode){
+               case "SUBWAY": testList.add(new Ticket("Subway", 2.75));
+                   break;
+               case "BIKE":  testList.add(new Ticket("CitiBike", 3.00));
+                   break;
+               case "BUS": testList.add(new Ticket("Bus", 2.75));
+           }
+        }
 
         TicketListRowAdapter ticketsAdapter = new TicketListRowAdapter(this, R.layout.ticketlist_row, testList);
         ListView ticketsList = (ListView)findViewById(R.id.ticketList);
@@ -85,6 +115,8 @@ public class PayActivity extends AppCompatActivity implements MasterpassInitCall
         for(Ticket ticket : testList){
             subTotal += ticket.getTicketPrice();
         }
+        curRoute.setTripCost(subTotal);
+
         TextView ticketSubTotal = (TextView)findViewById(R.id.subtotal);
         ticketSubTotal.setText(Double.toString(subTotal));
         // Set the total amount text
@@ -96,7 +128,7 @@ public class PayActivity extends AppCompatActivity implements MasterpassInitCall
             @Override
             public void onClick(View view) {
                 payProgress.setTitle("CitiGo");
-                payProgress.setMessage("Signing in...");
+                payProgress.setMessage("Paying...");
                 payProgress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
                 payProgress.setProgress(0);
                 payProgress.show();
@@ -121,6 +153,7 @@ public class PayActivity extends AppCompatActivity implements MasterpassInitCall
                 Thread thread = new Thread(runnable);
                 thread.start();
                 Intent intent = new Intent(PayActivity.this, PayReceiptActivity.class);
+                intent.putExtra("commuteHistory", curRoute);
                 startActivity(intent);
             }
         });

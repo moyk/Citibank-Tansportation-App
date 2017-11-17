@@ -2,28 +2,42 @@ package Modules;
 
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBAttribute;
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBHashKey;
+import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBRangeKey;
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBTable;
 
+import java.io.Serializable;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by nick on 11/15/17.
  */
 
-@DynamoDBTable(tableName = "CitiGoUserCommuteHistory")
-public class UserCommuteHistory {
+@DynamoDBTable(tableName = "CitiGoUserCommuteHitoryTable")
+public class UserCommuteHistory implements Serializable{
     private String firebaseUserId;
     private String timeStamp;
     private String destination;
     private String startPoint;
     private double tripCost;
-    private List<String> transitModes;
-    
+    private ArrayList<String> transitModes;
+    private String commuteHistoryId;
+
+    @DynamoDBHashKey(attributeName = "CommuteHistoryId")
+    public String getCommuteHistoryId(){
+        return this.commuteHistoryId;
+    }
+
+    public void setCommuteHistoryId(String commuteHistoryId){
+        this.commuteHistoryId = commuteHistoryId;
+    }
+
     public void setFirebaseUserId(String firebaseUserId){
         this.firebaseUserId = firebaseUserId;
     }
 
-    @DynamoDBHashKey(attributeName = "FirebaseUserId")
+    @DynamoDBAttribute(attributeName = "FirebaseUserId")
     public String getFirebaseUserId(){
         return this.firebaseUserId;
     }
@@ -69,7 +83,7 @@ public class UserCommuteHistory {
         return this.transitModes;
     }
 
-    public void setTransitModes(List<String> transitModes){
+    public void setTransitModes(ArrayList<String> transitModes){
         this.transitModes = transitModes;
     }
 }

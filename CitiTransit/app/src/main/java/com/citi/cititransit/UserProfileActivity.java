@@ -1,8 +1,11 @@
 package com.citi.cititransit;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.amazonaws.ClientConfiguration;
@@ -23,9 +26,9 @@ public class UserProfileActivity extends AppCompatActivity {
     private DynamoDBMapper dbMapper;
     private FirebaseAuth mAuth;
     private TextView userName;
-    private TextView email;
     private FirebaseAuth firebaseAuth;
     private User currentUser;
+    private Button commuteHistoryButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,9 +49,9 @@ public class UserProfileActivity extends AppCompatActivity {
         dbMapper = DynamoDBMapper.builder().dynamoDBClient(ddbClient).build();
 
         userName = (TextView) findViewById(R.id.user_profile_name);
-        email = (TextView) findViewById(R.id.userProfEmail);
-
+        commuteHistoryButton = (Button)findViewById(R.id.profile_history);
         mAuth = FirebaseAuth.getInstance();
+
         //if current page is first time load in then perform a load from database
         if(currentUser == null) {
             Runnable runnable = new Runnable() {
@@ -65,7 +68,6 @@ public class UserProfileActivity extends AppCompatActivity {
                         @Override
                         public void run() {
                             userName.setText(currentUser.getUserName());
-                            email.setText(currentUser.getUserEmail());
                         }
                     });
 
@@ -74,6 +76,15 @@ public class UserProfileActivity extends AppCompatActivity {
             Thread dbThread = new Thread(runnable);
             dbThread.start();
         }
+
+        commuteHistoryButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(UserProfileActivity.this, ProfileHistoryActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     private User newUserGen(String email, String firebaseUserId){

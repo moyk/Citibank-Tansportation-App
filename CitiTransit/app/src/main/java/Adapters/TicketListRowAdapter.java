@@ -52,6 +52,7 @@ public class TicketListRowAdapter extends ArrayAdapter<Ticket>{
                     case "CitiBike":
                         thumbnail.setImageResource(R.drawable.citibike);
                         break;
+
                 }
             }
         }
