@@ -10,5 +10,5 @@
     <string name="fragment_map__search">Search...</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="success_pay_text">Successfully Payed!</string>
+    <string name="success_pay_text">Payment processed!</string>
 </resources>
