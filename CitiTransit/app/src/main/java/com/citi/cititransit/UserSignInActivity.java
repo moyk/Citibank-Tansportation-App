@@ -1,9 +1,14 @@
 package com.citi.cititransit;
 
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
@@ -50,6 +55,8 @@ public class UserSignInActivity extends AppCompatActivity {
         userPassword = (EditText)findViewById(R.id.loginPassword);
         loginButton = (Button)findViewById(R.id.buttonLogin);
         newUserTextView = (TextView) findViewById(R.id.newUserSignUp);
+
+
         /**
          * GOOGLE SIGN IN
          * Configure sign-in to request the user's ID, email address, and basic
@@ -90,13 +97,6 @@ public class UserSignInActivity extends AppCompatActivity {
                 startActivity(new Intent(UserSignInActivity.this, UserSignUpActivity.class));
             }
         });
-
-//        findViewById(R.id.buttonLogin).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                signIn();
-//            }
-//        });
     }
 
     /**
@@ -169,13 +169,20 @@ public class UserSignInActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()) {
-
                             AlertDialog.Builder alertBuilder = new AlertDialog.Builder(UserSignInActivity.this);
                             alertBuilder.setMessage("Sign In Successful")
                                     .setCancelable(false)
                                     .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialogInterface, int i) {
+                                            final Intent serviceIntent = new Intent(UserSignInActivity.this, NotificationService.class);
+                                            new Handler().postDelayed(new Runnable() {
+                                                @Override
+                                                public void run() {
+                                                    startService(serviceIntent);
+                                                }
+                                            }, 5000);
+
                                             startActivity(new Intent(UserSignInActivity.this, MapsActivity.class));
                                         }
                                     });

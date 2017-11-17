@@ -1,5 +1,0 @@
-<resources>
-    <string name="app_name">GoogleMapsDirections</string>
-    <string name="title_activity_maps">Map</string>
-    <string name="fragment_map__search">Search...</string>
-</resources>

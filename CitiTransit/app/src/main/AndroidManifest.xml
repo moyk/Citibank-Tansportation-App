@@ -45,7 +45,6 @@
         <activity
             android:name=".UserSignUpActivity"
             android:label="Sign Up" />
-
         <activity android:name=".UserSignInActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -53,20 +52,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".UserProfileActivity">
-
-        </activity>
-        <activity
-            android:name=".PayActivity"
-            android:label="Pay" />
-        <activity
-            android:name=".Recommendation"
-            android:label="Recommend"/>
+        <activity android:name=".UserProfileActivity"></activity>
         <activity
             android:name=".RouteChoices"
-            android:label="Route"/>
+            android:label="Route" />
 
+        <service android:name=".NotificationService" />
+
+        <activity android:name=".PayReceiptActivity"></activity>
     </application>
 
 </manifest>

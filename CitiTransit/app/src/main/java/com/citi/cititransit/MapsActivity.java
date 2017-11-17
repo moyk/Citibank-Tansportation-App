@@ -2,6 +2,7 @@ package com.citi.cititransit;
 
 import android.Manifest;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
@@ -10,12 +11,19 @@ import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.amazonaws.ClientConfiguration;
+import com.amazonaws.auth.CognitoCachingCredentialsProvider;
+import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBMapper;
+import com.amazonaws.regions.Region;
+import com.amazonaws.regions.Regions;
+import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -28,6 +36,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
@@ -36,6 +45,7 @@ import java.util.List;
 import Modules.DirectionFinder;
 import Modules.DirectionFinderListener;
 import Modules.Route;
+import Modules.User;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, DirectionFinderListener{
 
@@ -49,6 +59,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private String distance, duration;
     private List<Route> routes;
     private GoogleApiClient mGoogleApiClient;
+    private Button regularRouteButton;
+    private AmazonDynamoDBClient ddbClient;
+    private CognitoCachingCredentialsProvider credentialsProvider;
+    private DynamoDBMapper dbMapper;
+    private FirebaseAuth firebaseAuth;
+    private User currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,19 +74,29 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+        //DynamoDB stuff
+        firebaseAuth = FirebaseAuth.getInstance();
+
+        credentialsProvider = new CognitoCachingCredentialsProvider(
+                getApplicationContext(),
+                "us-east-2:37ce01bb-3584-4401-a95f-6046de7975f8", // Identity pool ID
+                Regions.US_EAST_2 // Region
+        );
+        ddbClient = Region.getRegion(Regions.US_EAST_2).createClient(
+                AmazonDynamoDBClient.class,
+                credentialsProvider,
+                new ClientConfiguration()
+        );
+        dbMapper = DynamoDBMapper.builder().dynamoDBClient(ddbClient).build();
+        //Assume the user already in db
+
+
 
         etOrigin = (EditText) findViewById(R.id.etOrigin);
         etDestination = (EditText) findViewById(R.id.etDestination);
-//        btnFindPath = (Button) findViewById(R.id.searchButton);
-//        btnFindPath.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                sendRequest();
-//                Log.i("test","yes1");
-//            }
-//        });
-
         detail = (Button) findViewById(R.id.searchButton);
+        regularRouteButton = (Button)findViewById(R.id.addRegularRouteButton);
+
         detail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -81,6 +107,24 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });
 
+        regularRouteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Runnable runnable = new Runnable() {
+                    @Override
+                    public void run() {
+                        currentUser = dbMapper.load(User.class, firebaseAuth.getCurrentUser().getUid());
+                        currentUser.setUserPresetStartPoint(etOrigin.getText().toString());
+                        currentUser.setPresetDestination(etDestination.getText().toString());
+                        dbMapper.save(currentUser);
+                    }
+                };
+                Thread dbThread = new Thread(runnable);
+                dbThread.start();
+                Toast.makeText(MapsActivity.this, "Regular route added successfully",
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void sendRequest() {
