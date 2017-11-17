@@ -2,6 +2,7 @@ package com.citi.cititransit;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ListView;
 
 import com.amazonaws.ClientConfiguration;
@@ -9,12 +10,14 @@ import com.amazonaws.auth.CognitoCachingCredentialsProvider;
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBMapper;
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBQueryExpression;
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBScanExpression;
+import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.PaginatedList;
 import com.amazonaws.regions.Region;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -50,10 +53,7 @@ public class ProfileHistoryActivity extends AppCompatActivity {
 
         findCommuteHistoryWithUID(mAuth.getCurrentUser().getUid());
         //Assume the user is logged in
-
-        CommuteHistoryRowAdapter historyRowAdapter = new CommuteHistoryRowAdapter(this,
-                R.layout.commute_history_row, this.userCommuteHistory);
-        //ListView historyList = (ListView)findViewById(R.id.historyList);
+        //Log.d("test/ProfileHistory", this.userCommuteHistory.toString());
 
     }
 
@@ -62,12 +62,24 @@ public class ProfileHistoryActivity extends AppCompatActivity {
             @Override
             public void run() {
                 Map<String, AttributeValue> eav = new HashMap<String, AttributeValue>();
-                eav.put("val1", new AttributeValue().withS(fireBaseUserId));
+                eav.put(":val1", new AttributeValue().withS(fireBaseUserId));
                 DynamoDBScanExpression scanExpression =
                         new DynamoDBScanExpression()
                                 .withFilterExpression("FirebaseUserId = :val1")
                                 .withExpressionAttributeValues(eav);
-                userCommuteHistory = dbMapper.scan(UserCommuteHistory.class, scanExpression);
+                PaginatedList<UserCommuteHistory> result = dbMapper.scan(UserCommuteHistory.class, scanExpression);
+                if(result != null){
+                    final List<UserCommuteHistory> commuteHistory = new ArrayList<>(result);
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            CommuteHistoryRowAdapter historyRowAdapter = new CommuteHistoryRowAdapter(ProfileHistoryActivity.this,
+                                    R.layout.commute_history_row, commuteHistory);
+                            ListView historyList = (ListView)findViewById(R.id.historyList);
+                            historyList.setAdapter(historyRowAdapter);
+                        }
+                    });
+                }
             }
         };
         Thread dbThread = new Thread(runnable);

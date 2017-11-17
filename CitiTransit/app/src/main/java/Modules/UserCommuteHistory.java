@@ -21,7 +21,7 @@ public class UserCommuteHistory implements Serializable{
     private String destination;
     private String startPoint;
     private double tripCost;
-    private ArrayList<String> transitModes;
+    private List<String> transitModes;
     private String commuteHistoryId;
 
     @DynamoDBHashKey(attributeName = "CommuteHistoryId")
@@ -83,7 +83,7 @@ public class UserCommuteHistory implements Serializable{
         return this.transitModes;
     }
 
-    public void setTransitModes(ArrayList<String> transitModes){
+    public void setTransitModes(List<String> transitModes){
         this.transitModes = transitModes;
     }
 }
