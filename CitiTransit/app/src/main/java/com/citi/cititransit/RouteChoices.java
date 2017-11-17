@@ -1,7 +1,13 @@
 package com.citi.cititransit;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -13,6 +19,8 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.UiSettings;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
@@ -111,6 +119,7 @@ public class RouteChoices extends AppCompatActivity implements OnMapReadyCallbac
        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
     }
 
     public void checkService(GoogleMap mMap){
@@ -138,13 +147,28 @@ public class RouteChoices extends AppCompatActivity implements OnMapReadyCallbac
 
                         DirectionsResult transit=getDirectionsDetails(startpoint.get(0)+","+startpoint.get(1) ,endpoint.get(0)+","+ endpoint.get(1) ,TravelMode.TRANSIT);
                         List<LatLng> changepath = PolyUtil.decode(transit.routes[0].overviewPolyline.getEncodedPath());
+                        int mid=changepath.size()/2;
                         if (changepath!=null)
                             Log.i("test","yes we are calling api again");
-                        mMap.addPolyline(new PolylineOptions().color(getResources().getColor(R.color.draworange)).width(30).addAll(changepath));
+                        mMap.addPolyline(new PolylineOptions().color(getResources().getColor(R.color.draworange)).width(10).addAll(changepath));
+                        mMap.addMarker(new MarkerOptions()
+                                .position(changepath.get(mid))
+                                .title("Caution!")
+                                .snippet("This part is not working")
+                                .icon(bitmapDescriptorFromVector(this,R.drawable.ic_warning)));
                     }
                 }
             }
         }
+    }
+
+    private BitmapDescriptor bitmapDescriptorFromVector(Context context, int vectorResId) {
+        Drawable vectorDrawable = ContextCompat.getDrawable(context, vectorResId);
+        vectorDrawable.setBounds(0, 0, vectorDrawable.getIntrinsicWidth(), vectorDrawable.getIntrinsicHeight());
+        Bitmap bitmap = Bitmap.createBitmap(vectorDrawable.getIntrinsicWidth(), vectorDrawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        vectorDrawable.draw(canvas);
+        return BitmapDescriptorFactory.fromBitmap(bitmap);
     }
     @Override
     public void onMapReady(GoogleMap googleMap) {
@@ -172,8 +196,12 @@ public class RouteChoices extends AppCompatActivity implements OnMapReadyCallbac
     }
 
     private void addMarkersToMap(GoogleMap mMap) {
-        mMap.addMarker(new MarkerOptions().position(new LatLng(route.legs[overview].startLocation.lat,route.legs[overview].startLocation.lng)).title(route.legs[overview].startAddress));
-        mMap.addMarker(new MarkerOptions().position(new LatLng(route.legs[overview].endLocation.lat,route.legs[overview].endLocation.lng)).title(route.legs[overview].startAddress).snippet(getEndLocationTitle(route)));
+        //String[] originlat=origin.split(",");
+        //String[] endlat=destination.split(",");
+        //LatLng originpoint= new LatLng(Double.parseDouble(originlat[0]), Double.parseDouble(originlat[1]));
+        //LatLng endpoint= new LatLng(Double.parseDouble(endlat[0]), Double.parseDouble(endlat[1]));
+        //mMap.addMarker(new MarkerOptions().position(originpoint).title(route.legs[overview].startAddress));
+        //mMap.addMarker(new MarkerOptions().position(endpoint).title(route.legs[overview].endAddress));
     }
 
     private void positionCamera(DirectionsRoute route, GoogleMap mMap) {
@@ -197,14 +225,33 @@ public class RouteChoices extends AppCompatActivity implements OnMapReadyCallbac
                 Log.i("testname", steps[i].transitDetails.arrivalStop.name);
             }
         }
-        LatLng point1= new LatLng(40.759172,-73.953235);
-        LatLng point2= new LatLng(40.764618,-73.966090);
-        List<LatLng> newlist= new ArrayList<LatLng>();
-        newlist.add(point1);
-        newlist.add(point2);
+
         mMap.addPolyline(new PolylineOptions().color(R.color.draworange).width(10).addAll(decodedPath));
-        //mMap.addPolyline(new PolylineOptions().color(Color.BLACK).width(10).addAll(newlist));
-        checkService(mMap);
+        //checkService(mMap);
+        int size=decodedPath.size();
+        List<LatLng> hardcode= new ArrayList<>();
+        int i;
+        for (i=size-1; i>size-1-15;i--)
+            hardcode.add(decodedPath.get(i));
+        int mid=hardcode.size()/2;
+        mMap.addPolyline(new PolylineOptions().color(getResources().getColor(R.color.draworange)).width(10).addAll(hardcode));
+        mMap.addMarker(new MarkerOptions()
+                .position(hardcode.get(mid))
+                .title("Warning!")
+                .snippet("Significant delays on line")
+                .icon(bitmapDescriptorFromVector(this,R.drawable.ic_warning)));
+        DirectionsResult bike=getDirectionsDetails(Double.toString(decodedPath.get(size-1).latitude)+","+Double.toString(decodedPath.get(size-1).longitude), Double.toString(decodedPath.get(i).latitude)+","+Double.toString(decodedPath.get(i).longitude),TravelMode.BICYCLING);
+        Log.i("test", "what is this"+ decodedPath.get(size-1).toString());
+        if (bike!=null) {
+            Log.i("test", "yes, it is not empty");
+            List<LatLng> bikepath = PolyUtil.decode(bike.routes[0].overviewPolyline.getEncodedPath());
+            mMap.addMarker(new MarkerOptions()
+                    .position(bikepath.get(bikepath.size() / 2+8))
+                    .title("Electrical Issues Causing Delay")
+                    .snippet("Save 15 minutes, take Citibike!")
+                    .icon(bitmapDescriptorFromVector(this, R.drawable.ic_002_bike)));
+            mMap.addPolyline(new PolylineOptions().color(Color.BLUE).width(10).addAll(bikepath));
+        }
 
     }
 

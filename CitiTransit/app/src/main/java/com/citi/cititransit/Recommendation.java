@@ -21,14 +21,12 @@ import com.google.maps.model.TravelMode;
 import org.joda.time.DateTime;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import Adapters.RecomendationRowAdapter;
-import Modules.UserCommuteHistory;
 
 
 /**
@@ -157,7 +155,6 @@ public class Recommendation extends AppCompatActivity {
                             TransitStartStop.add(steps[j].transitDetails.departureStop.name);
                             TransitEndStop.add(steps[j].transitDetails.arrivalStop.name);
                             temp.add(steps[j].transitDetails.line.vehicle.type.toString());
-                            transitLines += steps[j].transitDetails.line.shortName;
                         }
                         if (steps[j].travelMode != TravelMode.TRANSIT)
                             transitLines += steps[j].travelMode.toString();
