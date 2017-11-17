@@ -59,6 +59,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private DynamoDBMapper dbMapper;
     private FirebaseAuth firebaseAuth;
     private User currentUser;
+    private Button userProfileButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,12 +85,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         dbMapper = DynamoDBMapper.builder().dynamoDBClient(ddbClient).build();
         //Assume the user already in db
 
-
-
         etOrigin = (EditText) findViewById(R.id.etOrigin);
         etDestination = (EditText) findViewById(R.id.etDestination);
         detail = (Button) findViewById(R.id.searchButton);
         regularRouteButton = (Button)findViewById(R.id.addRegularRouteButton);
+        userProfileButton = (Button)findViewById(R.id.button_menu);
 
         detail.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -117,6 +117,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 dbThread.start();
                 Toast.makeText(MapsActivity.this, "Regular route added successfully",
                         Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        userProfileButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MapsActivity.this, UserProfileActivity.class);
+                startActivity(intent);
             }
         });
     }

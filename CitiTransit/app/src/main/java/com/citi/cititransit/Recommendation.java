@@ -21,10 +21,14 @@ import com.google.maps.model.TravelMode;
 import org.joda.time.DateTime;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import Adapters.RecomendationRowAdapter;
+import Modules.UserCommuteHistory;
 
 
 /**
@@ -41,6 +45,7 @@ public class Recommendation extends AppCompatActivity {
     private ArrayList<ArrayList<String>> TransitNameArray;
     private ArrayList<ArrayList<String>> TransitStartArray ;
     private ArrayList<ArrayList<String>> TransitEndArray;
+
     private ArrayList<String> nameArray ;
 
     private ArrayList<String> infoArray;
@@ -49,15 +54,18 @@ public class Recommendation extends AppCompatActivity {
 
     private ArrayList<String> costArray;
 
+    private String origin, destination;
+    private ArrayList<Set<String>> paymentInfoArray;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.route_recommendation);
 
         Bundle bundle = getIntent().getExtras();
-        String destination = bundle.getString("destination");
-        String origin = bundle.getString("origin");
-
+        destination = bundle.getString("destination");
+        origin = bundle.getString("origin");
 
         Log.i("test", "yes"+ destination);
         Log.i("test", "Yes"+ origin);
@@ -73,6 +81,7 @@ public class Recommendation extends AppCompatActivity {
         TransitNameArray = new ArrayList<>();
         TransitStartArray = new ArrayList<>();
         TransitEndArray = new ArrayList<>();
+        paymentInfoArray = new ArrayList();
 
         routeArray=new ArrayList<DirectionsRoute>();
 
@@ -87,6 +96,10 @@ public class Recommendation extends AppCompatActivity {
             TransitNameArray.add(new ArrayList<String>());
             TransitStartArray.add(new ArrayList<String>());
             TransitEndArray.add(new ArrayList<String>());
+            Set<String> temp= new HashSet<>();
+            temp.add("Bicycling");
+            paymentInfoArray.add(temp);
+
 
         }
         DirectionsResult walk=getDirectionsDetails(origin,destination,TravelMode.WALKING);
@@ -100,6 +113,9 @@ public class Recommendation extends AppCompatActivity {
             TransitNameArray.add(new ArrayList<String>());
             TransitStartArray.add(new ArrayList<String>());
             TransitEndArray.add(new ArrayList<String>());
+            Set<String> temp= new HashSet<>();
+            temp.add("walking");
+            paymentInfoArray.add(temp);
         }
         DirectionsResult drive=getDirectionsDetails(origin,destination,TravelMode.DRIVING);
         if (drive != null) {
@@ -112,11 +128,15 @@ public class Recommendation extends AppCompatActivity {
             TransitNameArray.add(new ArrayList<String>());
             TransitStartArray.add(new ArrayList<String>());
             TransitEndArray.add(new ArrayList<String>());
+            Set<String> temp= new HashSet<>();
+            temp.add("driving");
+            paymentInfoArray.add(temp);
         }
         //origin="40.6088428089499,-73.9730028152875";
         //destination="40.644272,-73.97972116";
 
         DirectionsResult transit=getDirectionsDetails(origin,destination,TravelMode.TRANSIT);
+
         if (transit != null) {
             DirectionsRoute[] routes = transit.routes;
             for (int routeInd = 0; routeInd < routes.length; routeInd++){
@@ -127,7 +147,7 @@ public class Recommendation extends AppCompatActivity {
                 ArrayList<String> TransitLineName= new ArrayList<>();
                 ArrayList<String> TransitStartStop= new ArrayList<>();
                 ArrayList<String> TransitEndStop= new ArrayList<>();
-
+                Set<String> temp= new HashSet<>();
                 for (int i = 0; i < legs.length; i++) {
                     DirectionsStep[] steps = legs[i].steps;
                     for (int j = 0; j < steps.length; j++) {
@@ -136,6 +156,8 @@ public class Recommendation extends AppCompatActivity {
                             TransitLineName.add(steps[j].transitDetails.line.shortName);
                             TransitStartStop.add(steps[j].transitDetails.departureStop.name);
                             TransitEndStop.add(steps[j].transitDetails.arrivalStop.name);
+                            temp.add(steps[j].transitDetails.line.vehicle.type.toString());
+                            transitLines += steps[j].transitDetails.line.shortName;
                         }
                         if (steps[j].travelMode != TravelMode.TRANSIT)
                             transitLines += steps[j].travelMode.toString();
@@ -143,6 +165,7 @@ public class Recommendation extends AppCompatActivity {
                             transitLines += "->";
                     }
                 }
+                paymentInfoArray.add(temp);
                 infoArray.add(transitLines);
                 //infoArray.add(drive.routes[overview].legs[overview].duration.humanReadable);
                 imageArray.add(R.drawable.ic_driving);
@@ -171,6 +194,9 @@ public class Recommendation extends AppCompatActivity {
                 intent.putExtra("TransitLineName",TransitNameArray.get(position));
                 intent.putExtra("TransitStartStop",TransitStartArray.get(position));
                 intent.putExtra("TransitEndStop",TransitEndArray.get(position));
+                intent.putExtra("start", origin);
+                intent.putExtra("end", destination);
+                intent.putExtra("commuteModes", new ArrayList<>(paymentInfoArray.get(position)));
                 startActivity(intent);
             }
         });

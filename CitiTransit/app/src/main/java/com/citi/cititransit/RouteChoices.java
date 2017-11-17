@@ -26,9 +26,9 @@ import com.google.maps.model.DirectionsStep;
 import com.google.maps.model.TravelMode;
 
 import org.joda.time.DateTime;
-
 import java.io.IOException;
 import java.io.InputStream;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -51,11 +51,14 @@ public class RouteChoices extends AppCompatActivity implements OnMapReadyCallbac
     private ArrayList<ArrayList<String>> reslist = new ArrayList<>();
     private  String transitmode, transitdetail, transitcost;
 
+    private String origin;
+    private String destination;
+    private ArrayList<String> commuteModes;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.routechoices);
-
 
         Intent bundle = getIntent();
         route=(DirectionsRoute) bundle.getSerializableExtra("parcel_data");
@@ -73,14 +76,34 @@ public class RouteChoices extends AppCompatActivity implements OnMapReadyCallbac
         costInfoID=findViewById(R.id.costInfoID);
         costInfoID.setText(transitcost);
 
-        payTest = findViewById(R.id.payTest);
+        payTest = (Button) findViewById(R.id.payTest);
+
+        route=(DirectionsRoute) bundle.getSerializableExtra("parcel_data");
+        origin = (String)bundle.getSerializableExtra("start");
+        destination = (String)bundle.getSerializableExtra("end");
+        commuteModes = (ArrayList<String>)bundle.getSerializableExtra("commuteModes");
+        Log.d("test/RouteChoice", "origin: " + origin);
+        Log.d("test/RouteChoice", "destination " + destination);
+        Log.d("test/RouteChoice", "modes: " + commuteModes.toString());
+
+        if (route!=null)
+            Log.i("test", "yes!! successfully passed in routes");
+
         payTest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(RouteChoices.this, PayActivity.class);
+                intent.putExtra("start", origin);
+                intent.putExtra("end",destination);
+                intent.putExtra("modes", commuteModes);
                 startActivity(intent);
             }
         });
+
+        route=(DirectionsRoute) bundle.getSerializableExtra("parcel_data");
+        TransitLineName= (ArrayList)bundle.getSerializableExtra("TransitLineName");
+        TransitStartStop= (ArrayList)bundle.getSerializableExtra("TransitStartStop");
+        TransitEndStop= (ArrayList)bundle.getSerializableExtra("TransitEndStop");
 
         if (route!=null)
             Log.i("test", "yes!! successfully passed in routes");

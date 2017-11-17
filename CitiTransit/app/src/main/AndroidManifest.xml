@@ -40,28 +40,29 @@
             android:name=".Recommendation"
             android:label="Recommend" />
         <activity
+            android:name=".MapsActivity"
+            android:label="Map" />
+        <activity
             android:name=".UserSignUpActivity"
             android:label="Sign Up" />
-
-            <activity android:name=".MapsActivity"
-                android:label="Map" >
+        <activity
+            android:name=".UserSignInActivity"
+            android:label="CitiGo">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".UserProfileActivity">
-
-        </activity>
+        <activity android:name=".UserProfileActivity"></activity>
         <activity
             android:name=".RouteChoices"
             android:label="Route" />
 
         <service android:name=".NotificationService" />
 
-        <activity android:name=".PayReceiptActivity"></activity>
+        <activity android:name=".PayReceiptActivity" />
+        <activity android:name=".ProfileHistoryActivity"></activity>
     </application>
 
 </manifest>
